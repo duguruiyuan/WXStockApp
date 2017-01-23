@@ -1,0 +1,26 @@
+<template name="askQuestion">
+<!--评论弹窗-->
+    <view  style="opacity: {{opacity  || 0}};">
+       <view class="weui-mask" style="display:{{display || 'none'}}"></view>
+          <view class="foot_dialog bgfff">
+               <view class="weui-cells__title weui-flex">
+                <view class="weui-flex__item colred">{{user.answer_price}}大咖币向他提问</view>
+                    <view bindtap="hide">取消</view>
+                </view>
+                  <view class="weui-cells weui-cells_after-title">
+                     <view class="weui-cell">
+                          <view class="weui-cell__bd">
+                                <textarea  maxlength="{{maxLength}}"  auto-focus="true" bindinput="input"
+                                class="weui-textarea" placeholder="输入您的问题，回答被其他人收听后，您将于{{user.user_name}}平分偷听收入。如果{{user.user_name}}超过72小时未解答，提问费用回自动退回。" style="height: 4.5em" />
+                                <view class="weui-textarea-counter">{{len || 0}}/{{maxLength}}</view>
+                          </view>
+                     </view>
+               </view>
+                  <view class="weui-btn-area text_right">
+                        <button class="weui-btn"
+                        data-answer_price="{{user.answer_price}}" data-answer_id="{{user.userid}}" type="warn" bindtap="send" size="mini">发送</button>
+                  </view>
+       </view>
+    </view>
+</template>
+

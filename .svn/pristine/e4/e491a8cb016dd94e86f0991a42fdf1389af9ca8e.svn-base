@@ -1,0 +1,63 @@
+<!--顶部-->
+<view class="header">
+    <view class="weui-flex container">
+        <view class="weui-flex__item text_font_14">
+            返回
+        </view>
+        <view class="weui-flex__item text_center position_re">
+            <view class="weui-flex nav_t_tab box_Fillet3">
+                <view class="weui-flex__item active">我的自选</view>
+             
+            </view>
+        </view>
+        <view class="weui-flex__item text_right">
+            <navigator url="/modules/market/search/search"><i class="icon iconfont icon-llhomesearch text_font_24"></i></navigator>
+        </view>
+    </view>
+</view>
+
+<view class="page">
+<view class="page__bd">
+    <view class="weui-tab">
+        <view class="weui-navbar bgfff">
+            <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"
+                      bindtap="tabClick">
+                    <view class="weui-navbar__title">{{item}}</view>
+                </view>
+            </block>
+        <view class="weui-navbar__slider"
+              style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel" hidden="{{activeIndex != 0}}">
+            <view class="weui-tab__content">
+                <!--个股行情-->
+                <view class="all_table_box">
+                    <view class="all_table text_font_14">
+                        <view class="all_table_li">个股名称</view>
+                        <view class="all_table_li text_center">现价</view>
+                        <view class="all_table_li text_right" bindtap="sortChangePct">涨幅
+                            <i class="icon iconfont icon-yi"></i><!--<i class="icon iconfont icon-xiasanjiao"></i><i class="icon iconfont icon-xiasanjiao-copy"></i>-->
+                        </view>
+                    </view>
+                </view>
+                <view class="all_table_box bgfff" wx:for="{{optionsData}}" wx:key="{{index}}">
+                    <navigator class="all_table" url="/modules/market/stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}">
+                        <view class="all_table_li">{{item.name}}
+                            <view class="colgray text_font_14">{{item.code}}</view>
+                        </view>
+                        <view class="all_table_li text_center {{item.color}}">{{item.price}}</view>
+                        <view class="all_table_li text_right {{item.color}}">{{item.changePct}}</view>
+                    </navigator>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+</view>
+
+<view class="text_center margin_top">
+    <navigator class="text_font_14" hover-class="none">+ 点击添加自选</navigator>
+</view>
+
+

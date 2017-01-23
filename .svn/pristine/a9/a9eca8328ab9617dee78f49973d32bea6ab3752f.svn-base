@@ -1,0 +1,68 @@
+/**
+ * Created by caojie on 2017/1/14.
+ * 大咖详情
+ */
+const path = "../../../common/";
+const {noticeHelper} = require(path+"handle").handlers;
+const http = require(path+"http.js").http;
+const urls = require(path+"const").const.url;
+const {noteList,questionList} =  require(path+"data.js").dataHepler;
+let page = {
+    data:{
+        "userid":null,//大咖用户id
+        "bigname":{},//大咖详情
+        "currentListType":1,//当前类型
+        "noteList":[],//笔记列表
+        "questionList":[],//问股列表
+        "courseList":[],//课程列表
+    },
+    //------获取大咖详情-------
+    getBignameDetail:function (userid) {
+        http.get(urls.bigname_detail,{userid:userid}).then(
+            data => this.setData({"bigname":data})
+        )
+    },
+    //-------获取大咖笔记 或课程 ----
+    getNoteList:function (note_type,authorid) {
+      this.noteList = this.noteList || new noteList(note_type,4,authorid);
+      this.noteList.nextPage(data => {
+          note_type == 1? this.setData({"noteList":data}):this.setData({"courseList":data});
+      });
+    },
+    //-------获取大咖问股---------
+    getQuestionList:function (answerid) {
+      this.questionList =  this.questionList || new questionList(5,answerid);
+      this.questionList.nextPage(data => this.setData({}))
+    },
+    onLoad:function (option) {
+        this.data.userid = option.query;
+        console.log(option.query);
+        this.getBignameDetail(option.query.userid);
+        this.getNoteList(1,option.query.userid);
+    },
+    //------切换tab---------
+    switchTab:function (type) {
+       //设置当前type
+       this.data.currentType = type;
+       let userid = this.data.userid;
+       switch (type){
+           case 1:
+               !this.data.noteList.length && this.getNoteList(1,userid);
+               break;
+           case 2:
+               !this.data.courseList.length && this.getNoteList(2,userid);
+               break;
+           case 3:
+               !this.data.questionList.length && this.getQuestionList(userid);
+               break;
+           default:
+       }
+    },
+    //---------提问-------------
+    askQuestion:function () {
+        
+    }
+
+}
+
+Page(page);

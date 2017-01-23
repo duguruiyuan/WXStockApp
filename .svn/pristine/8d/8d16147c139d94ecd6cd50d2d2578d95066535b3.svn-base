@@ -1,0 +1,40 @@
+/**
+ * Created by caojie on 2017/1/13.
+ * 大咖首页
+ */
+const app = getApp();
+const path = "../../../common/";
+const {bignameList,recommendData} =  require(path+"data.js").dataHepler;
+const {noticeHelper} = require(path+"handle").handlers;
+//大咖顶部推荐位置
+const POSITION_ID_TOP = 1;
+const page = {
+    data:{
+        "recData":[],//推荐大咖
+        "allList":[]//所有大咖
+    },
+    //========获取推荐数据========
+    getRecList:function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_TOP);
+        this.recData.nextPage(data => this.setData({"recData":data}));
+    },
+    //========获取所有大咖列表=====
+    getAllList:function () {
+        this.bignameList = this.bignameList || new bignameList();
+        this.bignameList.nextPage(data => this.setData({"allList":data}));
+    },
+    onLoad:function () {
+        this.getRecList();
+        this.getAllList();
+    },
+    //关注用户
+    notice:(userid) => noticeHelper.noticeUser(userid).then(()=> this.setData()),
+    //取消关注
+    cancel:(userid) => noticeHelper.cancel(userid).then(() => this.setData()),
+    //跳转用户详情
+    toUserDetail:(userid)=> wx.redirectTo({url:`../detail?userid=${userid}`}),
+    //下拉刷新
+    refresh:()=>this.getAllList()
+}
+
+Page(page);

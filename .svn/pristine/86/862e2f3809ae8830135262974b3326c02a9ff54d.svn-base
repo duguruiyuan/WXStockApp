@@ -1,0 +1,61 @@
+<import src="../../templates/windows.wxml"/>
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+    		<i class="icon iconfont icon-gerenzhongxin text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			找大咖
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+
+<swiper autoplay="true" interval="5000" duration="500"style="height:290px;">
+    <block wx:for="{{recData}}" wx:for-item="rmd" wx:key="id">
+       <swiper-item>
+            <view class="container find_dk_lb">
+                  <view class="weui-flex text_center bgfff box_Fillet5 padding_top"style="height:240px;">
+                    <block wx:for="{{rmd}}" wx:key="">
+                         <view class="weui-flex__item padding_top">
+                             <image src="{{item.contents.user_ico}}" class="img_60 img_Fillet"></image>
+                             <view class="tag_bg text_font_14 box_Fillet3">{{item.contents.user_title}}</view>
+                             <view class="text_font_18">{{item.contents.user_name}}</view>
+                             <view class="text_font_12 colgray clamp_3">{{item.contents.user_profiles}}</view>
+                             <view class="padding_top">
+                             <button type="warn" plain="true"size="mini" data-userid="{{item.contents.userid}}" bindtap="toUserDetail">查看主页</button>
+                             </view>
+                         </view>
+                    </block>
+                  </view>
+            </view>
+      </swiper-item>
+    </block>
+</swiper>
+
+
+<view class="weui-panel__bd bgfff">
+    <block wx:for="{{allList}}" wx:key="userid">
+       <navigator url="../detail/detail?userid={{item.userid}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+           <view class="weui-media-box__hd">
+              <image src="{{item.user_ico}}" class="img_60 img_Fillet"></image>
+           </view>
+           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_left padding_right">
+              <view class="weui-media-box__title">{{item.user_name}}<small class="colred text_font_14"> | {{item.user_title}}</small></view>
+              <view class="weui-media-box__desc clamp_2">{{item.user_profiles}}</view>
+              <view class="weui-media-box__desc">关注：{{item.user_notice_num}}</view>
+           </view>
+           <view class="follow_btn">
+            <button  hidden="{{item.my_noticed != 0}}" data-userid="{{item.userid}}" catchtap="notice" class="" type="warn" plain="true"size="mini">加关注</button>
+            <button  hidden="{{item.my_noticed == 0}}"  data-userid="{{item.userid}}" catchtap="cancelNotice" class="btn_none_red_border" type="default" plain="true"size="mini">取消关注</button>
+           </view>
+       </navigator>
+    </block>
+</view>
+
+<template is="alert" data="{{param:alertParam}}"></template>
+<template is="confirm" data="{{param:confirmParam}}"></template>
+

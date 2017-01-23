@@ -1,0 +1,20 @@
+<!--板块榜-->
+<view class="weui-flex container margin_top">
+<view class="all_table">
+    <view class="all_table_li text_center">名称代码</view>
+    <view class="all_table_li text_center" bindtap="sortPlate">涨跌幅</view>
+    <view class="all_table_li text_center">领涨股</view>
+</view>
+</view>
+
+<view class="all_table_box bgfff" id="bankuai" wx:for="{{plateData}}" wx:key="code">
+<navigator url="/modules/market/rank/rank?isPlate=1&typeCode=up&title={{item.trade}}&typeId={{item.tradeTypeId}}" open-type="navigate">
+    <view class="all_table">
+        <view class="all_table_li">{{item.trade}}</view>
+        <view class="all_table_li text_center {{item.color}}">{{item.tradeRate}}</view>
+        <view class="all_table_li text_right">{{item.name}}
+            <view class="colgray text_font_14">{{item.code}}</view>
+        </view>
+    </view>
+</navigator>
+</view>

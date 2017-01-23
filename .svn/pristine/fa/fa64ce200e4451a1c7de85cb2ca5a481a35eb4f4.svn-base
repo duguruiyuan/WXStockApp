@@ -1,0 +1,70 @@
+<!--评论模板-->
+<template name="comment">
+    <view class="weui-panel weui-panel_access">
+         <view class="weui-panel__hd">热门评论</view>
+         <view class="weui-panel__bd">
+                <block wx:for="{{commentList}}" wx:key="id">
+                        <view class="border_b margin_10_15">
+                            <view class="weui-media-box_appmsg weui-flex__item position_re margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg img_36">
+                                        <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.commenterIco}}" ></image>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__title">{{item.commenterName}}</view>
+                                        <view class="weui-media-box__desc">{{item.createTime}}</view>
+                                    </view>
+                                      <view class="zan_box colgray">
+                                        <span><i wx:if="{{item.iBest == 1}}" class="icon iconfont icon-zantongfill colred" bindtap="commentAgree" data-cmtid="{{item.id}}"></i><i wx:if="{{!item.iBest}}" class="icon iconfont icon-zantongfill" data-cmtid="{{item.id}}" bindtap="commentAgree"></i>{{item.bestNum || 0}}</span><span><i class="icon iconfont icon-liuyan" bindtap="noteComment" data-level="2" data-parentCommentid="{{item.id}}"></i>{{item.lastComments.length || 0}}</span>
+                                    </view>
+                            </view>
+                            <view class="hot_pl_l padding_top">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">{{item.commentContent}}</a>
+                                </view>
+                                <block wx:if="{{item.lastComments.length > 0}}">
+                                    <view class="reply_box text_font_12 margin_bottom">
+                                        <block wx:for="{{item.lastComments}}" wx:key="id" wx:for-item="cmt">
+                                             <view><span class="colblue">{{cmt.commenterName}}：</span>{{cmt.commentContent}}</view>
+                                        </block>
+                                    </view>
+                                </block>
+                            </view>
+                        </view>
+                </block>
+         </view>
+    </view>
+
+
+        <!--底部浮动-->
+    <view class="height_50"></view>
+       <view class="fd_box">
+         <button class="fd_box_input box_Fillet60" data-level="1"
+          bindtap="noteComment" type="default" plain="true"size="mini"><i class="icon iconfont icon-xinxifill"></i>发表精彩评论 免费获取5大咖币</button>
+    </view>
+</template>
+
+
+
+<template name="sendComment">
+<!--评论弹窗-->
+<view style="display:{{display || 'none'}};">
+            <view class="weui-mask"></view>
+            <view class="foot_dialog bgfff">
+                <view class="weui-cells__title weui-flex">
+                    <view class="weui-flex__item colred">发布评论 </view>
+                    <view bindtap="hide">取消</view>
+                </view>
+               <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                            <textarea value="{{content}}" class="weui-textarea"style="height: 3.3em"
+                            maxlength="{{maxLength}}"  auto-focus="true" bindinput="input"/>
+                            <view class="weui-textarea-counter">{{len || 0}}/{{maxLength}}</view>
+                        </view>
+                    </view>
+                </view>
+                 <view class="weui-btn-area text_right">
+                    <button class="weui-btn" type="warn" data-noteid="{{noteid}}" data-level="{{level}}" data-parentCommentid="{{parentCommentid}}" bindtap="send" size="mini">发送</button>
+                </view>
+            </view>
+</view>
+</template>

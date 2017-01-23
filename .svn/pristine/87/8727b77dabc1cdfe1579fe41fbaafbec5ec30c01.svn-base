@@ -1,0 +1,33 @@
+/**
+ * Created by cj on 2016/1/9.
+ * 大咖问股配置文件
+ */
+const debug = false,
+    apiDomain = "http://wxsmall.tunnel.2bdata.com",//api 域名配置 //http://www.dakawengu.com
+    resourceDomain = "http://wxsmall.tunnel.2bdata.com/resources/data/",//本机环境
+    debugUrl = {
+        //登录
+        login:resourceDomain+"login.json",
+        //大咖列表
+        bigname_index:resourceDomain+"bigname_index.json",
+        //推荐大咖
+        recommend:resourceDomain+"bigname_rec.json"
+    },
+    onlineUrl = {
+        //登录
+        login:apiDomain+"/api/user/wxMiniLogin.do",
+        //大咖列表
+        bigname_index:apiDomain+"/api/bigname/list.do",
+        //推荐接口
+        recommend:apiDomain+"/api/index/reccontent.do"
+    },
+    url = debug ? debugUrl :onlineUrl;
+var Const = {
+    debug:debug,
+    url:url,
+    SessionKey:"SESSION_KEY",//存储sessionid的key
+    sessionExpiresKey:"SESSION_EXPIRES",//存储session过期时间的key
+    UserInfoKey:"USER_INFO"//存储用户信息的key
+}
+
+module.exports.const = Const;

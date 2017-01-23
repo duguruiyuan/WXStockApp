@@ -1,0 +1,159 @@
+<!--大咖-笔记列表-->
+<!--顶部-->
+<import src="../../templates/tab.wxml" />
+<import src="../../templates/ask_question.wxml"/>
+
+
+
+
+  <view class="header">
+    <view class="weui-flex container">
+      <view class="weui-flex__item"></view>
+      <view class="weui-flex__item text_center">问股</view>
+        <navigator  url="/modules/bigname/hot/hot" class="weui-flex__item text_right">
+          <view  class="text_font_14" hover-class="none">提问</view>
+        </navigator>
+    </view>
+  </view>
+
+
+   <!--提问弹窗-->
+<template is="askQuestion" data="{{user:bigname,opacity:opacity,len:len,maxLength:maxLength,display:display}}"/>
+  
+
+
+<view class="bgfff margin_bottom weui-flex">
+  <block wx:for="{{recData}}" wx:key="id">
+    <view  class="weui-panel__bd weui-flex__item box_border_r padding_10_15">
+       <navigator url="/modules/bigname/detail/detail?userid={{item.contents.userid}}">
+          <view class="weui-media-box_appmsg weui-flex__item margin_bottom">
+            <view class="weui-media-box__hd_in-appmsg img_36">
+              <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.contents.user_ico}}"></image>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <view class="weui-media-box__title">{{item.contents.user_name}}
+                <i class="icon iconfont icon-huo colred text_font_18"></i>
+              </view>
+              <view class="weui-media-box__desc colred text_font_14">{{item.contents.user_title}}</view>
+            </view>
+          </view>
+          <view class="text_font_12 colgray">
+            <a href="javascript:void(0)">{{item.contents.user_profiles}}</a>
+          </view>
+      </navigator>
+      <view class="text_center padding_top">
+        <button type="warn" plain="true" size="mini" data-bigname="{{item.contents}}" bindtap="ask">向他提问</button>
+      </view>
+    </view>
+  </block>
+</view>
+
+
+<view class="page bgfff">
+  <view class="page__bd">
+    <view class="weui-tab">
+
+      <!--全部/我的提问-->
+      <template is="tab" data="{{tabs:tabs,sliderLeft:sliderLeft,sliderOffset:sliderOffset}}" />
+      <view class="weui-tab__panel container">
+
+        <!--全部-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <block wx:for="{{allList}}" wx:key="contentid">
+            <view class="border_l time_axis">
+              <navigator class="weui-media-box padding_none border_b" url="../detail/detail?questionid={{item.contentid}}">
+                <view class="border_time text_font_14 padding_top">
+                  <image src="../../../resources/images/time_c_ico.png" class="img_14"></image>{{item.create_time}}</view>
+                <view class="weui-panel__bd">
+                  <view class="weui-article__h2">
+                    <a href="javascript:void(0)">{{item.title}}</a> 
+                  </view>
+                  <view class="speech_div">
+                    <image src="{{item.user_ico}}" class="img_36 img_Fillet" mode="widthFix"></image>
+                    <a href="javascript:void(0)">
+                      <image src="../../../resources/images/speech_pay.png" hidden="{{item.read_perm != 1}}" class="speech_div_yuyin" mode="widthFix"></image>
+                      <image src="../../../resources/images/speech_free.png" hidden="{{item.read_perm != 2}}" class="speech_div_yuyin" mode="widthFix"></image>
+                      <image src="../../../resources/images/speech_okpay.png" hidden="{{item.read_perm != 3 && item.read_perm != 4}}" class="speech_div_yuyin" mode="widthFix"></image>
+                      <image src="../../../resources/images/speech_answered.png" hidden="{{item.read_perm != 5}}" class="speech_div_yuyin" mode="widthFix"></image>
+                      <span class="text_font_12 colgray">{{item.audio_length}}s</span> 
+                    </a> 
+                  </view>
+                  <view class="weui-media-box__title">{{item.user_name}}
+                    <small class="colred text_font_14"> | {{item.user_title}}</small> 
+                  </view>
+                </view>
+                <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                <view class="weui-panel__ft">
+                  <view class="weui-media-box__info">
+                    <view class="weui-media-box__info__meta">价值{{item.value}}大咖币</view>
+                    <view class="weui-media-box__info__meta">{{item.readnum}}人听过</view>
+                  </view>
+                </view>
+              </navigator>
+            </view>
+          </block>
+        </view>
+
+        <!--我的提问-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <block wx:for="{{myQuestions}}" wx:key="contentid">
+
+            <!--已回答-->
+            <block wx:if="{{item.question_answer_flag == 1}}">
+              <view class="weui-media-box padding_none">
+                <view class="weui-panel__bd padding_top">
+                  <view class="weui-article__h2">
+                    <a href="javascript:void(0)">{{item.title}}</a> 
+                  </view>
+                  <view class="speech_div">
+                    <image src="{{item.user_ico}}" class="img_36 img_Fillet" mode="widthFix"></image>
+                    <a href="javascript:void(0)">
+                      <image src="../../../resources/images/speech_okpay.png" class="speech_div_yuyin" mode="widthFix"></image>
+                      <span class="text_font_12 colgray">{{item.audio_length}}s</span> 
+                    </a> 
+                  </view>
+                  <view class="weui-media-box__title">{{item.user_name}}
+                    <small class="colred text_font_14"> | {{item.user_title}}</small> 
+                  </view>
+                </view>
+                <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                <view class="weui-panel__ft">
+                  <view class="weui-media-box__info">
+                    <view class="weui-media-box__info__meta">
+                      <i class="icon iconfont icon-shizhong"></i>{{item.create_time}}</view>
+                    <view class="weui-media-box__info__meta">价值{{item.value}}大咖币</view>
+                    <view class="weui-media-box__info__meta">{{item.readnum}}人听过</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+
+            <!--未回答-->
+            <block wx:if="{{item.question_answer_flag == 0}}">
+              <view class="weui-media-box padding_lr_none">
+                <view class="follow_btn text_font_12">
+                  <view class="time_font">{{item.question_time}}</view>
+                </view>
+                <view class="weui-panel__bd">
+                  <view class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                    <view class="weui-media-box__hd_in-appmsg img_36">
+                      <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.question_ico}}"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                      <view class="weui-media-box__title">{{item.question_user_name}}</view>
+                    </view>
+                  </view>
+                  <view class="weui-article__h2">
+                    <a href="javascript:void(0)">{{item.title}}</a> 
+                  </view>
+                </view>
+              </view>
+            </block>
+          </block>
+          <view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  </view>

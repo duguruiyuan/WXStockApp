@@ -1,0 +1,18 @@
+
+<view class="weui-cells margin_top">
+<view class="weui-cells padding-top padding_10_15">
+<view class="weui-cell__bd">
+<textarea class="weui-textarea text_font_14" placeholder="使用过程中遇到任何问题，欢迎反馈，留下您的宝贵意见，我们将及时处理" style="height: 4.3em" />
+</view>
+</view>
+</view>
+<view class="weui-cells  margin-top">
+<view class="weui-cell weui-cell_select">
+<view class="weui-cell__hd" style="width: 105px"><view class="text_font_14 padding_left">手机号/QQ号</view></view>
+<view class="weui-cell__bd">
+<input class="weui-input text_font_14" placeholder="留下您的手机或QQ方便我们联系您" />
+</view>
+</view>
+</view>
+<view class="margin_10_15 padding_top"><button type="warn" >提交</button></view>
+

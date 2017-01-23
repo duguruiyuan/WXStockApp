@@ -1,0 +1,139 @@
+/**
+ * Created by cj on 2017/1/14.
+ * 公有的操作方法 比如关注用户，取消关注，超值,订阅等
+ */
+import Promise from "../resources/lib/promise.min"
+const http = require("http.js").http;
+const urls = require("const.js").const.url;
+//========用户关注相关======
+let NoticeHelper = {
+    notice: function (userid, ) {
+        return http.post(urls.notice_user, {userid: userid}).then((data)=> {
+            wx.showToast({title: "感谢您的关注", icon: "success", mask: true});
+            return Promise.resolve();
+        });
+    },
+    cancel: function (userid) {
+        return http.post(urls.cancel_notice_user, {userid: userid}).then(() => {
+            wx.showToast({title: "期待您下次关注", icon: "success", mask: true});
+            return Promise.resolve();
+        });
+    }
+}
+
+/**********支付工具****************/
+let PayHelper = function (url,param,payNum) {
+    Object.assign(this,{url,param,payNum});
+}
+//是否有足够大咖币
+PayHelper.prototype.hasEnougthCoin = function () {
+    return http.get(urls.query_balance).then(({data:balance=0}=data) => {
+        let num = Math.ceil(Number.parseInt(balance));
+        //余额大于等于支付费用可以支付
+        return Promise.resolve({result: num >= this.payNum, balance: num});
+    });
+}
+PayHelper.prototype.pay = function (cb) {
+
+    /**
+     * 确认支付
+     * @param url
+     * @param param
+     */
+    function toPay(url,param) {
+        http.get(url,param).then(data=>cb(data));
+    }
+
+    /**
+     * 获取更多大咖币
+     */
+    function getMoreCoin() {
+        wx.redirectTo({url: '../modules/my/activity/activity'});
+    }
+
+
+    this.hasEnougthCoin().then(data=>{
+        //获取余额是否充足,以及余额
+        let {result, balance} = data;
+        let content = "";//提示信息,执行
+        let _fun = null;//执行的函数
+        //如果可以支付，则支付，否则提示获取更多大咖币
+        if(result == true){
+            content = `您拥有${balance}个大咖币,确认支付？`
+            _fun = toPay;
+        }else{
+            content=`余额不足,是否获取更多大咖币？`;
+            _fun = getMoreCoin;
+        }
+        confirm("温馨提醒",content,()=>_fun(this.url,this.param));
+    });
+};
+
+/**
+ *
+ * 提问
+ */
+let QuestionHelper = {
+    value:"",//提问内容
+    //弹窗
+    popup:function () {
+        this.setData({
+            display:"block",
+            opacity:1,
+            maxLength:200
+        });
+    },
+    //关闭弹窗
+    hide:function () {
+        this.setData({opacity:0});
+    },
+    //输入时
+    input:function (e) {
+        let value = this.value = e.detail.value;
+        this.setData({len:this.data.maxLength - value.length});
+    },
+    //发送提问
+    send: function (e) {
+        let {answer_price,answer_id} = e.currentTarget.dataset;
+        if(!this.value || this.value < 5){
+           showAlert("提问问题不能少于5个字哟!");
+           return;
+        }
+        let url = urls.question_submit;
+        let param = {
+            answer_userid:answer_id,
+            total_fee:answer_price,
+            question_content:this.value
+        }
+        let that = this;
+        new PayHelper(url,param,answer_price).pay(function () {
+            that.hide();
+            showAlert("恭喜您提问成功，请耐心等待大咖的回答哟!!");
+        });
+    }
+}
+
+function showAlert(content,title="提示") {
+    wx.showModal({
+        title:title,
+        content:content,
+        showCancel:false
+    });
+}
+
+
+function confirm(title,content,_fun) {
+    wx.showModal({
+        title:title,
+        content:content,
+        success:function (res) {
+            res.confirm && _fun();
+        }
+    })
+}
+
+module.exports.handlers = {
+    noticeHelper: NoticeHelper,
+    payHelper: PayHelper,
+    questionHelper:QuestionHelper
+}

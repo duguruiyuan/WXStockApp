@@ -1,0 +1,57 @@
+<!--大咖-课程详情页-->
+<import src="../../templates/comment.wxml"/>
+<!--顶部-->
+<view class="kc_top_div">
+        <view class="weui-flex">
+                <view class="weui-flex__item padding_left">
+                    <i class="icon iconfont icon-left text_font_24"></i>
+                </view>
+                <view class="weui-flex__item text_center">课程详情</view>
+                 <view class="weui-flex__item text_right padding_right">
+                    <i bindtap="cancelCollect" class="icon iconfont icon-shoucang text_font_24"  hidden="{{course.mycollected == 0}}"></i>
+                    <i bindtap="collect" class="icon iconfont icon-shoucang1 text_font_24"  hidden="{{course.mycollected != 0}}"></i>
+                </view>
+        </view>
+        <view class="play_img" style=" height:225px">
+                <image src="../../../resources/images/paly_ico.png" class="paly_ico img_60"></image>
+                <image src="{{course.note_img}}" mode="widthFix"class="img_all"></image>
+        </view>
+        <video id="courseVideo" style="width:100%;" mode="widthFix" binderror="playError" src="{{course.note_video}}"></video>
+</view>
+
+<view class="bgfff padding_10_15">
+      <view class="weui-article__h2">{{course.note_title}}</view>
+      <view class="colgray text_font_12">{{course.note_summry}}</view>
+        <view bindtap="{{support}}" class="text_center padding_top padding_bottom" hidden="{{course.mysatisfied != 0}}">
+            <image bindtap="support" class="weui-media-box__thumb img_60" src="../../../resources/images/praised_ico_show.png" >
+            </image><view class="colred">超值</view>
+        </view>
+    <view class="weui-panel__ft">
+        <view class="weui-media-box__info">
+        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{course.note_time}}</view>
+        <view class="weui-media-box__info__meta">{{course.reader_nums}}人看过</view>
+            <view class="weui-media-box__info__meta">{{course.mysatisfied}}人觉得超值 </view>
+        </view>
+    </view>
+</view>
+
+<view class="weui-media-box bgfff">
+    <navigator url="/modules/bigname/detail/detail?userid={{course.note_authorid}}" class="weui-media-box_appmsg weui-flex__item">
+            <view class="weui-media-box__hd_in-appmsg img_36">
+                <image class="weui-media-box__thumb img_Fillet img_all" src="{{course.author_ico}}" ></image>
+            </view>
+            <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                <view class="weui-media-box__title">{{course.note_author_name}}<small class="colred text_font_14"> | {{course.user_title}}</small></view>
+                <view class="weui-media-box__desc">{{course.noticer_nums}}人关注</view>
+            </view>
+            <view class="follow_btn">
+            	<button class="" hidden="{{course.mynoticed != 0}}" data-userid="{{course.note_authorid}}" catchtap="notice" type="warn" plain="true"size="mini">加关注</button>
+            	<button class="btn_none_red_border" hidden="{{course.mynoticed == 0}}" type="default" plain="true"size="mini">已关注</button>
+            </view>
+    </navigator>
+    				
+</view>
+
+<template is="comment" data="{{commentList:commentList}}"/>
+
+    <template is="sendComment" data="{{noteid:courseid,display:display,maxLength:maxLength,len:len,level:commentLevel,parentCommentid:parentCommentid,content:content}}"></template>

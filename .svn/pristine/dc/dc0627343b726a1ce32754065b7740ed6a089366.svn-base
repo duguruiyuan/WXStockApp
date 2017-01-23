@@ -1,0 +1,79 @@
+/**
+ * Created by cj on 2016/1/9.
+ * 大咖问股配置文件
+ */
+const debug = false,
+    apiDomain = "http://wxsmall.tunnel.2bdata.com",//api 域名配置 //http://www.dakawengu.com
+    resourceDomain = "http://wxsmall.tunnel.2bdata.com/resources/data/",//本机环境
+    STOCKAPI = "http://stockapi2.dakawengu.com",
+    TESTHTTP = "https://ba7lh5.yiyoudata.com",
+    debugUrl = {
+        //登录
+        login:resourceDomain+"login.json",
+        //大咖列表
+        bigname_index:resourceDomain+"bigname_index.json",
+        //推荐大咖
+        recommend:resourceDomain+"bigname_rec.json"
+    },
+    onlineUrl = {
+        //登录
+        login:apiDomain+"/api/user/wxMiniLogin.do",
+        //推荐接口
+        recommend:apiDomain+"/api/index/reccontent.do",
+        //大咖列表
+        bigname_list:apiDomain+"/api/bigname/list.do",
+        //大咖详情
+        bigname_detail:apiDomain+"/api/bigname/detail.do",
+        //关注用户
+        notice_user:apiDomain+"/api/bigname/notice.do",
+        //取消关注
+        cancel_notice_user:apiDomain+"/api/bigname/cancel.do",
+        //笔记列表
+        note_list:apiDomain+"/api/noteInterface/list.do",
+        //问股列表
+        question_list:apiDomain+"/api/question/list.do",
+        //提问
+        question_submit:apiDomain+"/api/question/question_submit.do",
+        //笔记详情
+        note_detail:apiDomain+"/api/noteInterface/detail.do",
+        //笔记评论列表
+        note_comment_list:apiDomain+"/api/noteInterface/queryComments.do",
+        //笔记付费
+        note_pay:apiDomain+"/api/business/note/pay.do",
+        //问股付费
+        question_pay:apiDomain+"/api/business/question/listen/pay.do",
+        //笔记点赞
+        note_support:apiDomain+"/api/noteInterface/satisfy_set.do",
+        //问股点赞
+        question_support:apiDomain+"/api/question/satisfy_set.do",
+        //笔记评论
+        note_comment:apiDomain+"/api/noteInterface/saveComment.do",
+        //查询余额
+        query_balance:apiDomain+"/api/user/queryCoin.do",
+        //问股详情
+        question_detail:apiDomain+"/api/question/detail.do",
+        //行情基本信息
+        market_quotation:STOCKAPI+"/stockapi/stockinfoapp.htm",
+        //分时
+        min_quotation:STOCKAPI+"/stockapi/stockminute.htm",
+        //日k
+        day_quotation:STOCKAPI+"/stockapi/stockdays.htm",
+        //周k
+        week_quotation:STOCKAPI+"/stockapi/stockweeks.htm",
+        //月k
+        month_quotation:STOCKAPI+"/stockapi/stockmonths.htm",
+        //股票涨跌幅
+        stock_updown:STOCKAPI+"/stockapi/updownlist.htm",
+        index_set:TESTHTTP+"/api/index/set.do",
+        index_hot:TESTHTTP+"/api/index/hot.do",
+    },
+    url = debug ? debugUrl :onlineUrl;
+var Const = {
+    debug:debug,
+    url:url,
+    SessionKey:"SESSION_KEY",//存储sessionid的key
+    sessionExpiresKey:"SESSION_EXPIRES",//存储session过期时间的key
+    UserInfoKey:"USER_INFO"//存储用户信息的key
+}
+
+module.exports.const = Const;

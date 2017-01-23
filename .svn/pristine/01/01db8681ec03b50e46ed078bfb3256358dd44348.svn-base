@@ -1,0 +1,79 @@
+/**
+ * Created by caojie on 2017/1/14.
+ * 笔记详情
+ */
+const path = "../../../common/";
+const {noticeHelper,payHelper} = require(path+"handle.js").handlers;
+const http = require(path+"http.js").http;
+const urls = require(path+"const.js").const.url;
+const {noteCommentList} =  require(path+"data.js").dataHepler;
+let page = {
+    data: {
+        "noteid": null,//id
+        "note": {},//详情
+        "commentList": [],//评论列表
+        "showSupport": false//是否显示点赞按钮
+    },
+    getNoteDetail: function (noteid = this.data.noteid) {
+        http.get(urls.note_detail, {noteid: noteid}).then(res=>this.setData({"note": res.data}));
+    },
+    getNoteComment: function (noteid=this.data.noteid) {
+        this.commentList = this.commentList || new noteCommentList(noteid);
+        this.commentList.nextPage(data => this.setData({"commentList": data}));
+    },
+    onLoad: function (option) {
+        this.setData({noteid:option.noteid});
+        this.getNoteDetail();
+        this.getNoteComment();
+    },
+    //-------付费-------
+    notePay: function (total_fee) {
+        payHelper.pay(`${urls.note_pay}?noteid=${this.data.noteid}`, total_fee, data=> {
+            console.log("支付成功");
+        });
+    },
+    //-------收藏--------
+    collect:function () {
+        http.get(urls.note_collect,{"noteid":this.data.noteid}).then(res=>{
+            this.data.note.mycollected = 1;
+            this.setData({note:this.data.note});
+        });
+    },
+    //------取消收藏-----
+    cancelCollect:function () {
+        http.get(urls.note_cancel_collect,{"noteid":this.data.noteid}).then(res=>{
+            this.data.note.mycollected = 0;
+            this.setData({note:this.data.note});
+        });
+    },
+    //-------关注----------
+    notice: function(e){
+        let answer_id = e.currentTarget.dataset.userid
+        noticeHelper.notice(answer_id).then(()=> {
+            this.data.question.mynoticed = 1;
+            this.setData({"question":this.data.question});
+        });
+    },
+    //--------点赞-------
+    support: function () {
+        http.get(url.note_support, {noteid: this.data.noteid}).then(()=> {
+            this.setData({showSupport: false});
+        });
+    },
+    //--------评论点赞-----
+    commentAgree:function (commentid) {
+        http.get(urls.comment_agree,{commentid:commentid},()=>{
+            console.log("点赞成功");
+        });
+    },
+    //---------提交评论-----
+    submitComment: function () {
+
+    },
+    //-------加载更多-------
+    refresh: ()=>this.getNoteComment()
+}
+
+
+
+Page(page);

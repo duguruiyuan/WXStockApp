@@ -1,0 +1,36 @@
+<view>我的消息</view>
+<view style="position:absolute;top:20px;left:20px;">
+    <canvas style="width: 200px; height: 200px;" canvas-id="firstCanvas"></canvas>
+</view>
+
+<!-- 当使用绝对定位时，文档流后边的 canvas 的显示层级高于前边的 canvas -->
+<!--<canvas style="width: 40px; height: 50px;" canvas-id="secondCanvas"></canvas>-->
+<!-- 因为 canvas-id 与前一个 canvas 重复，该 canvas 不会显示，并会发送一个错误事件到 AppService -->
+<!--<canvas style="width: 400px; height: 500px;" canvas-id="secondCanvas" binderror="canvasIdErrorCallback"></canvas>-->
+<view >
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>43536555555</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+</view>
+
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>
+
+<view>435345</view>
+<view>435345</view>
+<view>435345</view>

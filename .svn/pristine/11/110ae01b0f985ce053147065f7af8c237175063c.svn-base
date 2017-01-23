@@ -1,0 +1,88 @@
+/**
+ * Created by cj on 2016/1/9.
+ * 首页
+ */
+const app = getApp();
+const _const = require("../../common/const.js").const;
+const {dateUtil,txtUtil} = require("../../common/utils.js");
+const page = {
+    data:{
+        "winHeight":app.globalData.systemInfo.windowHeight+"px",//窗体高度
+        "indicatorDots":"true",//是否显示底部状态
+        "autoplay":"true",
+        "interval":5000,//自动切换时间间隔
+        "duration":1000, //动画时长
+        "noteList":[],//精选笔记
+        "questionList":[],//精选问股
+        "courseList":[],//精选课程
+        "topicList":[],//专题列表
+    },
+    onLoad:function () {
+        //this.loadData();
+    },
+    loadData:function () {
+        this.data.topicList.length == 0 &&
+        httpUtil.get(_const.url.topic_list).
+        then(res => this.setData({"topicList":res.data}));
+        this.indexList = this.indexList || new IndexList();
+        this.indexList.nextPage((noteList,questionList,courseList) => {
+            this.parseData(noteList,questionList,courseList);
+        });
+    },
+    parseData:function (noteList,questionList,courseList) {
+        //笔记
+        let noteTxtField = [
+            {field:'author_profiles',length:40},
+            {field:'note_title',length:15},
+            {field:"note_summry",length:60},
+            {field:"free_note_content",length:60}
+        ]
+        txtUtil.limitTxtForObjects(noteList,noteTxtField);
+        dateUtil.formatDateForObjects(noteList,"note_time");
+
+        //问股
+        txtUtil.limitTxtForObjects(questionList,{field:"question_content",length:30});
+        dateUtil.formatDateForObjects(questionList,"question_time");
+
+        //课程 同笔记
+        txtUtil.limitTxtForObjects(courseList,noteTxtField);
+        dateUtil.formatDateForObjects(courseList,"note_time");
+
+        this.setData({
+            "noteList": this.indexList.noteItems,
+            "questionList": this.indexList.questionItems,
+            "courseList": this.indexList.courseItems
+        });
+    },
+    refresh:function () {
+        console.log('刷新数据');
+        this.loadData();
+    }
+}
+
+//=======请求数据工厂========
+function IndexList(){
+    this.noteItems = [];
+    this.courseItems = [];
+    this.questionItems = [];
+    this.page_no = 0;
+    this.page_size = 10;
+}
+IndexList.prototype.nextPage = function (cb) {
+    let params = {
+        page_no:this.page_no,
+        page_size:this.page_size
+    }
+    httpUtil.get(_const.url.index_list,params)
+        .then(function(res){
+            let items = res.data;
+            this.page_no+=1;
+            Array.prototype.push.apply(this.noteItems,items.note);
+            Array.prototype.push.apply(this.questionItems,items.question);
+            Array.prototype.push.apply(this.courseItems,items.course);
+            typeof cb == "function" && cb(this.noteItems,this.questionItems,this.courseItems);
+        }.bind(this));
+}
+
+//注册页面
+Page(page);

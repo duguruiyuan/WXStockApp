@@ -1,0 +1,52 @@
+var httpUtil = require('../../common/http.js').http
+var _const = require('../../common/const.js').const
+Page({
+    data: {
+        zhangfu: {},
+        diefu: {},
+        zhenfu: {}
+    },
+    onLoad: function (option) {
+        wx.setNavigationBarTitle({
+            title: '行情中心'
+        })
+
+        this.getUpDownList()
+
+        wx.hideNavigationBarLoading()
+    },
+    onReady: function () {
+        // 页面渲染完成
+    },
+    getUpDownList: function () {
+        var that = this
+        let params = {}
+        httpUtil.get(_const.url.stock_updown, params).then(function (res) {
+            for(var i= 0;i< res.data.length;i++){
+                var  type = res.data[i].typeCode
+              if(type === "up"){
+                  that.setData({
+                      zhangfu : res.data[i].data
+                  })
+              }else if (type === "down"){
+                  that.setData({
+                      diefu : res.data[i].data
+                  })
+              }else if (type === "swingup"){
+                  that.setData({
+                      zhenfu : res.data[i].data
+                  })
+              }
+            }
+        }.bind(this))
+    },
+    onShow: function () {
+        // 页面显示
+    },
+    onHide: function () {
+        // 页面隐藏
+    },
+    onUnload: function () {
+        // 页面关闭
+    }
+})

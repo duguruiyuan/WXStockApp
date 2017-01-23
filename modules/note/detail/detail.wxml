@@ -1,0 +1,84 @@
+<!--大咖-笔记详情-->
+
+<import src="../../../resources/lib/wxParse/wxParse.wxml"/>
+<import src="../../templates/comment.wxml"/>
+<import src="../../templates/windows.wxml"/>
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			笔记详情
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{note.mycollected == 0}}">
+				<i  bindtap="cancelCollect" class="icon iconfont icon-shoucang text_font_24"></i>
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{note.mycollected != 0}}">
+            	<i bindtap="collect" class="icon iconfont icon-shoucang1 text_font_24"></i>
+            </view>
+		</view>
+</view>
+
+<view class="weui-media-box bgfff">
+        <navigator url="/modules/bigname/detail/detail?userid={{note.note_authorid}}" class="weui-media-box_appmsg weui-flex__item">
+                <view class="weui-media-box__hd_in-appmsg img_36">
+                    <image class="weui-media-box__thumb img_Fillet img_all" src="{{note.author_ico}}" ></image>
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title clamp_1">{{note.note_author_name}}<small class="colred text_font_14"> | {{note.user_title}}</small></view>
+                    <view class="weui-media-box__desc">{{note.author_profiles}}</view>
+                </view>
+                <view class="follow_btn">
+					<button class="" hidden="{{note.mynoticed != 0}}" data-userid="{{note.note_authorid}}" catchtap="notice" type="warn" plain="true"size="mini">加关注</button>
+					<button class="btn_none_red_border" hidden="{{note.mynoticed == 0}}" type="default" plain="true"size="mini">已关注</button>
+                </view>
+        </navigator>
+</view>
+
+<view class="bgfff container">
+    <!--策略，显示免费笔记内容-->
+    <view wx:if="{{note.note_type == 1}}" class="weui-article__h2">{{note.free_note_content}}</view>
+    <!--资讯，显示摘要-->
+    <view wx:if="{{note.note_type == 3}}" class="weui-article__h2">{{note.note_summry}}</view>
+
+    <!--付费引导-->
+    <view class="weui-article__h2 text_center colred padding_top">{{note.pay_guide}}</view>
+
+    <!--付费笔记内容-->
+    <!--策略-->
+    <view wx:if="{{note.note_type == 1 && note.authority == 1}}" class="weui-article__h2">
+        <template is="wxParse" data="{{wxParseData:note_content.nodes}}"/>
+    </view>
+    <!--资讯-->
+    <view wx:if="{{note.note_type == 3}}" class="weui-article__h2">
+        <template is="wxParse" data="{{wxParseData:free_note_content.nodes}}"/>
+    </view>
+
+    <!--付费按钮-->
+    <view bindtap="notePay" wx:if="{{note.note_type == 1 && note.authority == 0}}" class="text_center"><button class="btn_red" type="warn" plain="true"size="mini">支付{{note.note_price}}大咖币阅读精华部分</button></view>
+    <!--点赞按钮-->
+    <view class="text_center padding_top padding_bottom">
+		<image bindtap="support" class="weui-media-box__thumb img_60" src="../../../resources/images/praised_ico_show.png" hidden="{{note.mysatisfied != 0}}">
+</image>
+    		<image bindtap="support" class="weui-media-box__thumb img_60" src="../../../resources/images/praised_ico_none.png" hidden="{{note.mysatisfied == 0}}"/>
+<view class="colred">超值</view>
+	</view>
+    <view class="weui-panel__ft border_t padding_bottom">
+        <view class="weui-media-box__info">
+             <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{note.note_time}}</view>
+             <view wx:if="{{note.note_type != 3}}" class="weui-media-box__info__meta">价值{{note.note_price}}大咖币</view>
+             <view class="weui-media-box__info__meta">{{note.reader_nums}}人读过</view>
+			 <view class="weui-media-box__info__meta">{{note.satisfied_nums}}人觉得超值 </view>
+        </view>
+     </view>
+</view>
+
+    <template is="comment" data="{{commentList:commentList}}"/>
+
+    <template is="sendComment" data="{{noteid:noteid,display:display,maxLength:maxLength,len:len,level:commentLevel,parentCommentid:parentCommentid,content:content}}"></template>
+
+    <template is="alert" data="{{param:alertParam}}"></template>
+
+    <template is="confirm" data="{{param:confirmParam}}"></template>

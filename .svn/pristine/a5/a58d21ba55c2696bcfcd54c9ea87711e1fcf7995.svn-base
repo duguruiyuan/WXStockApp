@@ -1,0 +1,62 @@
+/**
+ * Created by caojie on 2017/1/13.
+ * 大咖首页
+ */
+const app = getApp();
+const path = "../../../common/";
+const {bignameList,recommendData} =  require(path+"data.js").dataHepler;
+const {noticeHelper} = require(path+"handle.js").handlers;
+const {common,txtUtil} = require(path+"utils.js");
+//大咖顶部推荐位置
+const POSITION_ID_TOP = 200101;
+const page = {
+    data:{
+        "winHeight":app.globalData.systemInfo.windowHeight,
+        "recData":[],//推荐大咖
+        "allList":[],//所有大咖
+        "noMore":false,//是否还有更多数据
+    },
+    //========获取推荐数据========
+    getRecList:function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_TOP);
+        this.recData.nextPage( data => {
+            data.forEach(item => txtUtil.limitSingleTxtInObject(item.contents,"user_profiles",15));
+            //只取等于长度等于3的子数组
+            data = common.splitArray(data,3).filter(item => item.length==3);
+            this.setData({"recData":data});
+        });
+    },
+    //========获取所有大咖列表=====
+    getAllList:function () {
+        //没有更多数据,不继续加载
+        if(this.data.noMore){return;}
+        this.bignameList = this.bignameList || new bignameList();
+        this.bignameList.nextPage(data => {
+            (this.data.allList.length == data.length)?this.data.noMore=true:this.setData({"allList":data});
+        });
+    },
+    onLoad:function () {
+        this.getRecList();
+        this.getAllList();
+    },
+    //关注用户
+    notice:function (event) {
+        let userid = event.currentTarget.dataset.userid;
+        noticeHelper.notice(userid).then(()=> {
+            let user = this.data.allList.find((item) => item.userid == userid);
+            user.my_noticed = 1;
+            this.setData({"allList":this.data.allList});
+        });
+    },
+    //跳转用户详情
+    toUserDetail:(event)=>{
+        let userid = event.currentTarget.dataset.userid;
+        wx.navigateTo({url:`../detail/detail?userid=${userid}`});
+    },
+    //下拉刷新
+    refresh:function () {
+        this.getAllList();
+    }
+}
+
+Page(page);

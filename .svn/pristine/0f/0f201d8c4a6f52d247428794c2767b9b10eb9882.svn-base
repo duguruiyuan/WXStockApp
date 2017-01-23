@@ -1,0 +1,4 @@
+/*大咖-个人中心--------------------独立*/
+.Personal_Center_bg {background:url(../../resources/images/grzxbg.png) left top; background-size:100% 100%; padding:15px; text-align: center; color: #fff;}
+.Personal_Center_ico {padding:3px; color: #fff;margin-right:10px;}
+.news_li { border-bottom: solid 1px #ccc; padding-top:10px; padding-bottom:10px;}

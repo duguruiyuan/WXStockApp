@@ -1,0 +1,20 @@
+<!--板块榜-->
+<view class="weui-flex container margin_top">
+    <view class="all_table">
+        <view class="all_table_li text_center">名称代码</view>
+        <view class="all_table_li text_center">最新价</view>
+        <view class="all_table_li text_center" bindtap="sortPlate">涨跌幅</view>
+    </view>
+</view>
+
+<view class="all_table_box bgfff" id="stocks" wx:for="{{stocksData}}" wx:key="code">
+<navigator url="stock/stock" open-type="navigate">
+    <view class="all_table">
+        <view class="all_table_li">{{item[0]}}</view>
+        <view class="all_table_li text_center {{item.color}}">{{item[0]}}</view>
+        <view class="all_table_li text_right">{{item[0]}}
+            <view class="colgray text_font_14">{{item[0]}}</view>
+        </view>
+    </view>
+</navigator>
+</view>

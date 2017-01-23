@@ -1,0 +1,81 @@
+/**
+ * Created by Administrator on 2016/11/14.
+ */
+const path = "../../common/";
+const http = require(path + "http.js").http;
+const urls = require(path + "const.js").const.url;
+var app = getApp();
+Page({
+
+  data: {
+    "title": "个人中心",
+    "userInfo": {},
+    //"is_":,//是否领取过免费大咖币
+  },
+
+  //获取个人信息
+  getUserInfo: function () {
+    http.get(urls.user_detail).then(res => {
+      this.setData({ userInfo: res.data });
+      //         {
+      //     "errcode": "0",
+      //     "data": {
+      //         "unid": "oyI37sg1R-Q3qqpmPTy16MOUBF-w",
+      //         "notice_num": "0",
+      //         "user_ico": "http://wx.qlogo.cn/mmopen/vi_32/9vT7BictRiaeSvZ8KqrBol0hIic7cK41PqGhB6Ope6ofaQKC2eVP3VA9dFNwjSWibhkhKbhelPVqGiakgicnbNw7U5QQ/0",
+      //         "openid": "oZWnq0M_meiIWLHQAhnPTfoe9gw8",
+      //         "user_name": "三个焱枪手",
+      //         "user_note_nums": 0,
+      //         "user_question_nums": 0,
+      //         "userid": 76,
+      //         "allow_answer": 0,
+      //         "income_totle_coin": 0,
+      //         "collect_question_num": 0,
+      //         "user_noticer_nums": 0,
+      //         "answer_price": 0,
+      //         "allow_write_note": 0,
+      //         "collect_note_num": 0,
+      //         "user_answer_nums": 0,
+      //         "vip": 0,
+      //         "coin": 310
+      //     },
+      //     "errmessage": "密码修改成功！",
+      //     "status": "1"
+      // }
+    });
+  },
+  //
+  onLoad: function () {
+    this.getUserInfo();
+  },
+
+  //领取免费大咖币
+  freeMoney: function () {
+    //跳转到专题页面../zt/zt
+    wx.navigateTo({
+      url: '../zt/zt'
+    })
+  }
+
+
+  // wx.showModal({
+  //   title: '提示',
+  //   content: '这是一个模态弹窗',
+  //   success: function (res) {
+  //     if (res.confirm) {
+  //       console.log('用户点击确定')
+  //     }
+  //   }
+  // })
+
+  // wx.showActionSheet({
+  //   itemList: ['A', 'B', 'C'],
+  //   success: function (res) {
+  //     console.log(res.tapIndex)
+  //   },
+  //   fail: function (res) {
+  //     console.log(res.errMsg)
+  //   }
+  // })
+
+})

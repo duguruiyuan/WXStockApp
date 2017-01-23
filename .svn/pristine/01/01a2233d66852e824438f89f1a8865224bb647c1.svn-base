@@ -1,0 +1,75 @@
+
+<!--消费记录-->
+
+<!--顶部-->
+<import src="../templates/tab.wxml" />
+<view class="header">
+  <view class="weui-flex container">
+    <view class="weui-flex__item">
+      <i class="icon iconfont icon-left text_font_24"></i>
+    </view>
+    <view class="weui-flex__item text_center">
+      消费记录
+    </view>
+    <view class="weui-flex__item text_right">
+    </view>
+  </view>
+</view>
+<view class="weui-flex bgred colwhite padding_10_15">
+  <view class="weui-flex__item text_font_16">
+    <i class="icon iconfont icon-coin text_font_18"></i>大咖币余额：{{query_balance}}</view>
+  <view class="weui-flex__item text_font_16 text_right">
+    <i class="icon iconfont icon-wenhao text_font_18 touMingDiv70"></i>
+  </view>
+</view>
+<view class="page bgfff">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+
+            <!--支出/收入-->
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="width:{{1/tabs.length*10+'em'}};left:0px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+
+        <!--支出-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <view class="container">
+            <block wx:for="{{items}}" wx:key="contentid">
+              <view class="news_li weui-flex">
+                <view class="weui-flex__item">{{item.title}}
+                  <view class="text_font_12 colgray">{{item.content}}</view>
+                </view>
+                <view class="text_right">-{{item.coin}}
+                  <view class="text_font_12 colgray">{{item.create_time}}</view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+        <!--收入-->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <view class="container">
+            <block wx:for="{{items}}" wx:key="contentid">
+              <view class="news_li weui-flex">
+                <view class="weui-flex__item">{{item.title}}
+                  <view class="text_font_12 colgray">{{item.content}}</view>
+                </view>
+                <view class="text_right">+{{item.coin}}
+                  <view class="text_font_12 colgray">{{item.create_time}}</view>
+                </view>
+              </view>
+            </block>
+        </view>
+        </view>
+
+
+      </view>
+    </view>
+  </view>
+</view>

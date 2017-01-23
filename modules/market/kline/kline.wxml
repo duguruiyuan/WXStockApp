@@ -1,0 +1,10 @@
+<template name="kline">
+
+  <view id="canvas_container">
+    <canvas canvas-id="1" hidden="{{canvasIndex != 0}}"/>
+    <canvas canvas-id="2" hidden="{{canvasIndex != 1}}"/>
+    <canvas canvas-id="3" hidden="{{canvasIndex != 2}}"/>
+    <canvas canvas-id="4" hidden="{{canvasIndex != 3}}"/>
+  </view>
+
+</template>

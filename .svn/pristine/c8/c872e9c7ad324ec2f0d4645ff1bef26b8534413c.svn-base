@@ -1,0 +1,85 @@
+
+<import src="../../templates/windows.wxml"/>
+<!--大咖-笔记列表-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			问股详情
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{question.mycollected == 0}}">
+				<i  bindtap="cancelCollect" class="icon iconfont icon-shoucang text_font_24"></i>
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{question.mycollected != 0}}">
+            	<i bindtap="collect" class="icon iconfont icon-shoucang1 text_font_24"></i>
+            </view>
+		</view>
+</view>
+
+<view class="bgfff padding_10_15">
+    <view class="text_font_14 padding_bottom">来自<i class="colnameblue">{{question.question_user_name}}</i>的问题</view>
+    <view class="weui-article__h2">{{question.question_content}}</view>
+    <view class="colgray text_font_14 text_right">{{question.question_time}}</view>
+</view>
+<view class="bgfff weui-media-box">
+                            <view class="weui-panel__bd">
+                                <navigator url="/modules/bigname/detail/detail?userid={{question.answer_userid}}" class="weui-media-box_appmsg weui-flex__item margin_bottom">
+									<view class="weui-media-box__hd_in-appmsg img_36">
+										<image class="weui-media-box__thumb img_Fillet img_all" src="{{question.answer_ico}}" ></image>
+									</view>
+									<view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+										<view class="weui-media-box__title">{{question.answer_username}}<small class="colred text_font_14"> | {{question.user_title}}</small></view>
+										<view class="weui-media-box__desc">{{question.answer_profiles}}</view>
+									</view>
+									<view class="follow_btn">
+									    <button class="" hidden="{{question.mynoticed != 0}}" data-userid="{{question.answer_userid}}" catchtap="notice" type="warn" plain="true"size="mini">加关注</button>
+									    <button class="btn_none_red_border" hidden="{{question.mynoticed == 0}}" type="default" plain="true"size="mini">已关注</button>
+									</view>
+								</navigator>
+                                <view class="speech_div">
+                                    <span class="da_ico">答</span>
+                                    <a href="javascript:void(0)" bindtap="clickQuestion">
+                                        <block wx:if="{{playStatus == 'stop' && init == true}}">
+                                           <image src="../../../resources/images/speech_pay.png" hidden="{{question.prem != '1'}}" class="speech_div_yuyin"mode="widthFix"></image>
+                                           <image src="../../../resources/images/speech_free.png" hidden="{{question.prem != '2'}}" class="speech_div_yuyin"mode="widthFix"></image>
+                                           <image src="../../../resources/images/speech_okpay.png" hidden="{{question.prem != '3' && item.prem != '5'}}" class="speech_div_yuyin"mode="widthFix"></image>
+                                           <image src="../../../resources/images/speech_answered.png" hidden="{{question.prem != '5'}}" class="speech_div_yuyin"mode="widthFix"></image>
+                                        </block>
+                                        <image style="display:{{playStatus == 'pause'?'inline-block':'none'}}"
+                                            src="../../../resources/images/wgxqff_pic_pause.png" class="speech_div_yuyin"mode="widthFix">
+                                        </image>
+                                        <image style="display:{{playStatus == 'play'?'inline-block':'none'}}"
+                                            src="../../../resources/images/wgxqff_pic_play.png"  class="speech_div_yuyin"mode="widthFix">
+                                        </image>
+                                        <image style="display:{{(playStatus == 'stop' && init == false)?'inline-block':'none'}}"
+                                            src="../../../resources/images/wgxqff_pic_initial.png"  class="speech_div_yuyin"mode="widthFix">
+                                        </image>
+                                        <span style="display:{{playStatus == 'stop'?'inline-block':'none'}}" class="text_font_12 colgray">{{question.question_answer_length}}s</span>
+                                        <span style="display:{{(playStatus == 'play' || playStatus == 'pause')?'inline-block':'none'}}" class="text_font_12 colgray">{{currentTime || question.question_answer_length}}s</span>
+                                    </a>
+
+                                    <audio style="display:none;" id="questionAudio" bindended="stop" bindtimeupdate="progress" binderror="error" src="{{question.answer_oss_url}}" bindpause="pause" controls ></audio>
+                                </view>
+                             </view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{question.answer_time}}</view>
+                                        <view class="weui-media-box__info__meta">价值{{question.question_price}}大咖币</view>
+                                        <view class="weui-media-box__info__meta">{{question.listener_nums}}人听过</view>
+										<view class="weui-media-box__info__meta">{{question.satisfied_nums}}人觉得超值 </view>
+                                </view>
+                            </view>
+
+							<view class="border_t text_center padding_top" >
+								<image hidden="{{question.mysatisfied != 0}}" bindtap="support" class="weui-media-box__thumb img_60" src="../../../resources/images/praised_ico_show.png" ></image>
+                                								<image bindtap="support" class="weui-media-box__thumb img_60" hidden="{{question.mysatisfied == 0}}"  src="../../../resources/images/praised_ico_none.png" ></image><view class="colred">超值</view>
+							</view>
+
+</view>
+
+<template is="alert" data="{{param:alertParam}}"></template>
+
+<template is="confirm" data="{{param:confirmParam}}"></template>
+

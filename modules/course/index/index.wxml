@@ -1,0 +1,80 @@
+<!--大咖-课程列表-->
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			大咖课程
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<scroll-view scroll-y="true" style="height:{{winHeight}}px" bindscrolltolower="refresh" >
+<view class="weui-panel weui-panel_access margin_bottom tj_class">
+            <view class="weui-panel__hd"><i class="icon iconfont icon-icon colred text_font_18"></i>推荐课程</view>
+            <view class="weui-panel__bd container">
+                <block wx:for="{{recData}}" wx:key="id">
+                    <navigator url="../detail/detail?courseid={{item.contents.noteid}}" class="weui-media-box_appmsg weui-flex__item">
+                        <view class="weui-media-box__hd_in-appmsg">
+                            <image class="weui-media-box__thumb img_all" src="{{item.contents.note_img}}"mode="widthFix" ></image>
+                        </view>
+                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_top">
+                              <view class="weui-media-box__title">{{item.contents.note_title}}</view>
+                               <view class="weui-media-box__desc clamp_3">{{item.contents.note_summry}}</view>
+                        </view>
+                     </navigator>
+                    <navigator url="/modules/bigname/detail/detail?userid={{item.contents.note_authorid}}" class="weui-panel__ft padding_bottom border_b">
+                        <view class="weui-media-box__info weui-flex">
+                             <view class="weui-flex__item "><image src="{{item.contents.author_ico}}" class=" icon img_Fillet img_18"></image> {{item.contents.note_author_name}} | {{item.contents.user_title}}</view>
+                              <view class="weui-flex__item text_right">{{item.contents.note_time}}</view>
+                         </view>
+                    </navigator>
+                </block>
+            </view>
+</view>
+
+<view class="weui-panel weui-panel_access margin_bottom">
+    <view class="weui-panel__hd">优质课程</view>
+    <view class="weui-panel__bd container">
+        <block wx:for="{{courseList}}" wx:key="contentid">
+            <view class="weui-media-box padding_lr_none">
+                <view class="weui-panel__bd">
+                    <navigator url="../detail/detail?courseid={{item.contentid}}">
+                        <view class="text_font_20">{{item.title}}</view>
+                        <view class="play_img">
+                            <image src="../../../resources/images/paly_ico.png" class="paly_ico img_60"></image>
+                            <image src="{{item.video_img}}"mode="widthFix" class="img_big"></image>
+                        </view>
+                    </navigator>
+                    <navigator url="/modules/bigname/detail/detail?userid={{item.userid}}" class="weui-media-box_appmsg margin_top">
+                    
+                        <view class="kc_p">
+                            <image class="weui-media-box__thumb img_Fillet img_36" src="{{item.user_ico}}" ></image>
+                            <view class="text_font_12">{{item.user_name}}</view>
+                        </view>
+                        <view class="weui-flex__item weui-media-box__bd">
+                            <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                        </view>
+                    </navigator>
+                </view>
+
+                <view class="weui-panel__ft weui-flex">
+                    <view class="weui-media-box__info weui-flex__item">{{item.create_time}}</view>
+                    <view class="weui-media-box__info weui-flex__item text_right">
+                        <span class="colgray"><i class="icon iconfont icon-zantongfill"></i>{{item.satifynum}}</span>
+        				<i class="icon iconfont icon-eye"></i>{{item.readnum}}观看
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>
+</scroll-view>
+
+
+
+

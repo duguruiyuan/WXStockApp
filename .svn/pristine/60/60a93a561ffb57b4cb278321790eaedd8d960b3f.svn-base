@@ -1,0 +1,108 @@
+<!--大咖-笔记列表-->
+<!--顶部-->
+<import src="../../templates/tab.wxml"/>
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+            </view>
+			<view class="weui-flex__item text_center">
+			笔记
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<view class="weui-panel weui-panel_access margin_bottom">
+            <view class="weui-panel__hd"><i class="icon iconfont icon-zan colred "></i>推荐阅读</view>
+            <view class="weui-panel__bd container">
+                <block wx:for="{{recData}}" wx:key="id">
+                    <navigator url="../detail/detail?noteid={{item.contents.noteid}}">
+                       <view class="text_font_18 padding_top">
+                            <s class="tj_bag allIcon">{{item.sign}}</s>{{item.recommended_msg}}
+                       </view>
+                       <view class="weui-panel__ft padding_bottom border_b">
+                          <view class="weui-media-box__info">
+                              <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{item.contents.note_time}}</view>
+                              <view class="weui-media-box__info__meta">{{item.contents.note_author_name}} | {{item.contents.user_title}}</view>
+                          </view>
+                       </view>
+                    </navigator>
+                </block>
+            </view>
+</view>
+
+<view class="page bgfff" >
+    <view class="page__bd">
+        <view class="weui-tab">
+            <!--全部/我的关注-->
+            <template is="tab" data="{{tabs:tabs,sliderLeft:sliderLeft,sliderOffset:sliderOffset}}"/>
+            <view class="weui-tab__panel container">
+            <!--全部-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <view class="border_l time_axis">
+                        <block wx:for="{{allList}}" wx:key="contentid">
+                            <view class="weui-media-box padding_none">
+                                <view class="border_time text_font_14 padding_top"><image src="../../../resources/images/time_c_ico.png" class="img_14"></image>11:35</view>
+                                <view class="weui-panel__bd">
+                                    <navigator url="/modules/bigname/detail/detail?userid={{item.userid}}" class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                                        <view class="weui-media-box__hd_in-appmsg img_36">
+                                            <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.user_ico}}" ></image>
+                                        </view>
+                                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                            <view class="weui-media-box__title">{{item.user_name}}<small class="colred text_font_14"> | {{item.user_title}}</small></view>
+                                            <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                                        </view>
+                                    </navigator>
+                                    <navigator class="weui-article__h2" url="../detail/detail?noteid={{item.contentid}}">
+                                        <!--<view class="text_font_20">我是资讯的标题我是资讯的标题</view>-->
+                                        <a href="javascript:void(0)">{{item.title}}</a>
+                                    </navigator>
+                                </view>
+                                <view class="weui-panel__ft">
+                                    <view class="weui-media-box__info">
+                                            <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{item.create_time}}</view>
+                                            <view class="weui-media-box__info__meta">价值{{item.value}}大咖币</view>
+                                            <view class="weui-media-box__info__meta">{{item.readnum}}人读过</view>
+                                    </view>
+                                </view>
+                            </view>
+                        </block>
+                    </view>
+                </view>
+
+
+                <!--我的关注-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                   <block wx:for="{{noticeList}}" wx:key="contentid">
+                        <view class="weui-media-box padding_lr_none">
+                            <view class="weui-panel__bd">
+                                    <navigator url="/modules/bigname/detail/detail?userid={{item.userid}}" class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                                        <view class="weui-media-box__hd_in-appmsg img_36">
+                                            <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.user_ico}}" ></image>
+                                        </view>
+                                        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                            <view class="weui-media-box__title">{{item.user_name}}<small class="colred text_font_14"> | {{item.user_title}}</small></view>
+                                            <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                                        </view>
+                                    </navigator>
+                                    <navigator class="weui-article__h2" url="../detail/detail?noteid={{item.contentid}}">
+                                        <!--<view class="text_font_20">我是资讯的标题我是资讯的标题</view>-->
+                                        <a href="javascript:void(0)">{{item.title}}</a>
+                                    </navigator>
+                            </view>
+                             <view class="weui-panel__ft">
+                                  <view class="weui-media-box__info">
+                                      <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>{{item.create_time}}</view>
+                                      <view class="weui-media-box__info__meta">价值{{item.value}}大咖币</view>
+                                      <view class="weui-media-box__info__meta">{{item.readnum}}人读过</view>
+                                  </view>
+                             </view>
+                        </view>
+                    </block>
+                </view>
+
+            </view>
+        </view>
+    </view>
+</view>

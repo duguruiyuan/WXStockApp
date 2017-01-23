@@ -1,0 +1,2 @@
+/*大咖-笔记列表---------------独立*/
+s.tj_bag {  background:url(../../../resources/images/note_label_ico.png) no-repeat; width:46px; height:18px; line-height:18px; margin-right:5px; font-size:14px; background-size:100% 100%; color:#fff; text-align:center;text-decoration:none}

@@ -1,0 +1,6 @@
+/* modules/my/share/share.wxss */
+
+/*APP分享*/
+.app_share {padding:30px 0;}
+.app_share .text_font_14 { margin: 10px 0;}
+.app_share .text_font_14 text{ border: solid 1px #000; padding: 5px 10px;}

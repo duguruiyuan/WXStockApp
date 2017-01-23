@@ -1,0 +1,43 @@
+/**
+ * Created by cj on 2017/1/14.
+ * 问股列表
+ */
+const app = getApp();
+const path = "../../../common/";
+const {questionList,recommendData} =  require(path+"data.js").dataHepler;
+const POSITION_ID_QUESTION = 4;
+let page = {
+    data:{
+        "recData":[],//推荐
+        "allList":[],//所有
+        "myQuestions":[],//我的提问
+        "currentList":2,//当前列表类型，默认全部
+    },
+    getRecData:function () {
+      this.recData = this.recData || new recommendData(POSITION_ID_QUESTION);
+      this.recData.nextPage(data => this.setData({recData:data}));
+    },
+    getQuestionList:function (list_type=this.data.currentList) {
+        this.questionList = this.questionList || new questionList(list_type);
+        this.nextPage(data => {
+                let key = list_type == 2 ? "allList" : "myQuestions";
+                this.setData({key:data});
+            }
+        );
+    },
+    onLoad:function () {
+        this.getQuestionList(this.data.currentList);
+    },
+    switchTab:function (list_type) {
+        this.data.currentList = list_type;
+        let needLoad = false;
+        if(list_type == 1){
+            needLoad = !this.data.myQuestions.length;
+        }else if(list_type == 2){
+            needLoad = !this.data.allList.length;
+        }
+        needLoad && this.getQuestionList(list_type);
+    },
+    toQuestionDetail:(questionid)=>{wx.redirectTo({url:`../detail?id=${questionid}`})}
+
+}

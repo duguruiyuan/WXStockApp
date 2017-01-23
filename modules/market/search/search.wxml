@@ -1,0 +1,15 @@
+<view>
+    <view class="weui-media-box">
+        <input placeholder="请输入股票代码/全拼/首字母" focus="{{focus}}" maxlength="20" bindinput="searchStock" />
+    </view>
+    <view class="weui-media-box">
+        <scroll-view scroll-y="true" style="height: 500px;">
+<view wx:for="{{searchData}}" wx:key="id">
+    <navigator url="../stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+    {{item.code}}    {{item.name}}
+    </navigator>
+</view>
+        </scroll-view>
+    </view>
+</view>
+

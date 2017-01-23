@@ -1,0 +1,32 @@
+/*行情--------------------独立*/
+.hq_zs_box {padding:10px 0;}
+.hq_zs_box .text_font_24{line-height: 1.1}
+.hq_box_li {padding-top:10px;padding-bottom:10px;background-color: #fff; text-align: center;line-height: 1.3; }
+.hq_box_li_box{ width: 33.33333%;}
+.hq_title_font { line-height: 1.1; padding-top:10px;}
+.hq_table_tab .weui-navbar{ background: #f0f5fb;padding:0;}
+.hq_table_tab .weui-navbar__item {padding:8px 0}
+.hq_table_tab .weui-tab__panel{ padding-top:48px;}
+.hq_table_buysale .weui-navbar__slider { width: 50%}
+.hq_table_buysale .weui-navbar__item {padding:0}
+.hq_table_buysale .weui-tab__panel{ padding-top:24px;}
+.hq_table_buysale .all_table_box {font-size: 12px;}
+.hq_table_buysale .all_table_box{padding:0; border: none 0;}
+.hq_table_buysale .all_table {padding:2px 0;}
+.hq_table_buysale .weui-tab__content { padding:5px 0; }
+.hq_table_buysale .all_table_li {width:inherit}
+.hq_zs_sub { line-height: 1.2; font-size: 14px;}
+.hq_zs_sub .hq_zs_sub_li { width:25%; padding:5px 0;}
+.hq_zs_sub_top_li { width: 33.33333%;line-height: 22px}
+.hq_zs_sub_top_li { width: 33.33333%;}
+@media screen and (max-width: 340px) {
+    .hq_zs_sub_top_li {
+        width: 50%;
+    }
+    .hq_zs_box .text_font_24 { font-size: 36px;padding-top:5px;}
+}
+.hq_b_fd { position: fixed;z-index:999;left: 0;bottom: 0; width: 100%;background:#f0f5fb; height: 60px; line-height: 1.2; text-align: center}
+.zx_box {text-align: center; color: #fff;padding:10px;}
+.hq_b_fd_l { width:46%; padding:10px 0;}
+.hq_fdtab_sub { line-height: 28px; padding:10px 0;}
+.hq_zs_box_small { width: 110px; margin: 0 auto}

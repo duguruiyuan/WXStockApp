@@ -1,0 +1,76 @@
+// modules/my/payExpense/payExpense.js
+const path = "../../../common/";
+const http = require(path + "http.js").http;
+const urls = require(path + "const.js").const.url;
+const {expenseList, payList} = require(path + "data.js").dataHepler;
+Page({
+  data: {
+    "tabs": ["支出", "收入"],//默认选项卡
+    "activeIndex": 0,//当前激活选项 0:支出，1收入
+    "sliderOffset": 40,//tabs初始偏移量
+    "offsetIncremrnt": 40,//偏移增量，随着tabs的增多而减小
+    "items": [],//列表数据
+    "query_balance": {},//余额
+    "page_no": 1,
+    "page_size": 10,
+    "noMore": true
+  },
+
+  //查询余额
+  getBalance: function () {
+    http.get(urls.query_balance).then(res => {
+      this.setData({ "query_balance": res.data });
+      console.log(data);
+    }
+    )
+  },
+  
+  initData: function (index = this.data.activeIndex) {
+    index = Number.parseInt(index);
+    let item = null;
+    switch (index) {
+      case 0://支出
+        item = new payList();
+        break;
+      case 1://收入
+        item = new expenseList();
+        break;
+      default:
+        item = new payList();
+    }
+    this.item = item;
+  },
+  loadData: function () {
+    //当数据不存在，则调用initData方法加载数据
+    if (!this.item) {
+      this.initData()
+    }
+    this.item.nextPage(data => {
+      if (this.data.items.length == data.length) {
+        this.setData({ hasMore: false });
+      }
+      this.setData({ items: data });
+    });
+  },
+  onLoad: function (option) {
+    this.getBalance();
+    this.loadData();
+  },
+  tabClick: function (e) {
+    this.item = null;//清空item 重新加载
+    this.setData({
+      activeIndex: e.currentTarget.id,
+      sliderOffset: e.currentTarget.offsetLeft + this.data.offsetIncremrnt,
+      hasMore: true
+    });
+    this.loadData();
+  },
+  onReachBottom: function () {
+    this.data.hasMore && this.loadData();
+  },
+  //上拉重新加载
+  onPullDownRefresh: function () {
+    this.item = null;
+    this.loadData();
+  }
+});

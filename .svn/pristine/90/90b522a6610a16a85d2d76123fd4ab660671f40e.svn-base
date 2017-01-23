@@ -1,0 +1,70 @@
+/**
+ * Created by cj on 2017/1/14.
+ * 公有的操作方法 比如关注用户，取消关注，超值,订阅等
+ */
+import Promise from "../resources/lib/promise.min"
+const http = require("http.js").http;
+const urls = require("const.js").const.url;
+//========用户关注相关======
+let NoticeHelper = {
+    notice: function (userid, cb) {
+        return http.post(urls.notice_user, {userid: userid}).then((data)=> {
+            wx.showToast({title: "感谢您的关注", icon: "success", mask: true});
+            return Promise.resolve();
+        });
+    },
+    cancel: function (userid) {
+        return http.post(urls.cancel_notice_user, {userid: userid}).then(() => {
+            wx.showToast({title: "期待您下次关注", icon: "success", mask: true});
+            return Promise.resolve();
+        });
+    }
+}
+
+//==========付费==========
+let PayHelper = {
+    //-------查询余额------
+    queryBalance: function () {
+        return http.get(urls.query_balance);
+    },
+    //--------判断是否可以支付-----
+    isCanPay: function (totalFee) {
+        return this.queryBalance().then(({data:balance=0}=data) => {
+            let num = Math.ceil(Number.parseInt(balance));
+            //余额大于等于支付费用可以支付
+            return Promise.resolve({canPay: num >= totalFee, balance: num});
+        });
+    },
+    //-----支付-----
+    pay: function (url, totalFee = 0, cb) {
+        totalFee = Number.parseInt(totalFee);
+        //----确认支付-----
+        function payConfirm() {
+            url = `${url}&totalFee=${totalFee}`;
+            http.get(url).then(data => typeof cb == "function" && cb(data));
+        }
+
+        //-----获取更多大咖币----
+        function getMoreCoin() {
+            wx.redirectTo({url: "../modules/my/activity/activity"});
+        }
+
+        this.isCanPay(totalFee).then(res => {
+            let {canPay, balance} = res;
+            let content = ""
+            canPay ? content = `您拥有${balance}个大咖币,确认支付？` : content = `余额不足,是否获取更多大咖币？`;
+            wx.showModal({
+                title: "确认支付", content: content, success: (res) => {
+                    let op = canPay ? payConfirm : getMoreCoin;
+                    res.confirm && op();
+                }
+            });
+        });
+    }
+}
+
+
+module.exports.handlers = {
+    noticeHelper: NoticeHelper,
+    payHelper: PayHelper
+}

@@ -1,0 +1,75 @@
+/**
+ * Created by caojie on 2017/1/14.
+ * 笔记列表
+ */
+const path = "../../../common/";
+const {noteList, recommendData} =  require(path + "data.js").dataHepler;
+const {dateUtil} = require(path+"utils.js");
+const POSITION_ID_NOTE = 200102;
+let page = {
+    data: {
+        "tabs": ["全部", "我的关注"],
+        "activeIndex": "0",//当前激活tab 的index
+        "sliderOffset": 0,
+        "sliderLeft": 45,
+        "noMore": false,
+        "currentListName":"allList",//当前列表类型,默认全部
+        "recData": [],//推荐阅读
+        "allList": [],//全部笔记列表
+        "noticeList": [],//关注的笔记列表
+    },
+    getRecData: function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_NOTE);
+        this.recData.nextPage(data =>{
+            wx.stopPullDownRefresh();
+            [...data].map(item => dateUtil.formatDateForObject(item.contents,"note_time"));
+            this.setData({"recData": data});
+        });
+    },
+    loadData: function (listName = this.data.currentListName) {
+        //定义列表和类型的映射
+        let listRefer = {"allList":2,"noticeList":1};
+        this[listName] = this[listName] || new noteList(1, listRefer[listName]);
+        //如果与跟多数据就加载数据
+        !this.data.noMore &&
+        this[listName].nextPage(data => {
+            if (data.length == this.data[listName].length) {
+                this.setData({noMore: true});
+            } else {
+                listName == "allList"?this.setData({"allList": data}):this.setData({"noticeList":data});
+            }
+        });
+    },
+    onLoad: function () {
+        this.getRecData();
+        this.loadData("allList");
+    },
+    tabClick: function (e) {
+        let activeIndex = e.currentTarget.id;
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id,
+            noMore: false,
+            currentListName:activeIndex==0?"allList":"noticeList"
+        });
+        let needLoad = false;//是否需要重新加载数据
+        if (activeIndex == 0) {
+            needLoad = !this.data.allList.length;
+        } else if (activeIndex == 1) {
+            needLoad = !this.data.noticeList.length;
+        }
+        needLoad && this.loadData();
+    },
+    onReachBottom: function () {
+        !this.data.more && this.loadData();
+    },
+    onPullDownRefresh:function () {
+        this.recData = null;
+        this.allList = null;
+        this.noticeList = null;
+        this.getRecData();
+    }
+
+}
+
+Page(page);

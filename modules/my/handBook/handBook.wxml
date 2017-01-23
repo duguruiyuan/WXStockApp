@@ -1,0 +1,58 @@
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}"></view>
+
+<view class="weui-article bgfff">
+<view class="weui-article__h1">大咖问股使用手册</view>
+<view class="weui-article__section">
+    <view class="weui-article__title">关于大咖币</view>
+      <view class="weui-article__h3">1、什么是大咖币？</view>
+      <view class="weui-article__p">大咖币是大咖问股向用户发放的抵用券，用户可在大咖问股平台问股、看笔记时，以1枚大咖币等值抵用1元人民币的支付金额。大咖币是大咖问股回馈新老客户的优惠计划之一，不可转让和折现。</view>
+      <view class="weui-article__h3">2、如何获得大咖币？</view>
+       <view class="weui-article__p">大咖问股会不定期举行相关活动发放大咖币，满足活动要求即可获得大咖币。</view>
+      <view class="weui-article__h3">3、如何查询我的大咖币？</view>
+       <view class="weui-article__p">进入【个人中心】即可查看大咖币余额。</view>
+      <view class="weui-article__h3">4、大咖币使用方法？</view>
+       <view class="weui-article__p">在大咖问股平台问股、看笔记时，平台将自动选取您的有效大咖币；您可自主选择是否使用。 </view>
+</view>
+<view class="weui-article__section">
+<view class="weui-article__title">关于大咖</view>
+   <view class="weui-article__p">我们进驻资深投顾，口碑牛散发布研报，回答您的问股。当然，如果您有专业的资质，出众的天赋，也欢迎您加入我们。</view>
+  <view class="weui-article__title">关于回答问题 </view>
+  <view class="weui-article__h3">1、如何知道自己被提问了呢？ </view>
+   <view class="weui-article__p">登录APP，进入「大咖问股」模块，查看「我的」之「问我的」，即可知道。</view>
+  <view class="weui-article__h3">2、我必须回答每个提问吗？ </view>
+   <view class="weui-article__p">不，您可以选择不回答。您收到问题后，如果在72小时不回答，问题付款将按照原支付路径退回。</view>
+  <view class="weui-article__h3">3、如何提高自己的回复质量？ </view>
+   <view class="weui-article__p">
+   <ul>
+ 		<li>首先请保证音质，请尽量不要在太嘈杂的环境里录音，在确定发送前自己先听听，确保对方能听清。 </li>
+  		<li>其次保证内容质量，不要太草率，回答前想清楚，组织一下语言，尽量让提问者有所收获，不要答非所问。 </li>
+  		<li>最后，太短的答案容易给人敷衍的感觉。</li>
+    </ul> 
+   </view>
+  <view class="weui-article__h3">遇到侮辱、骚扰类的恶意问题怎么办？ </view>
+   <view class="weui-article__p">请截图并直接向客服举报。</view>
+</view>
+<view class="weui-article__section">
+  <view class="weui-article__title">关于提问和偷听</view>
+  <view class="weui-article__h3">1、什么都能问吗？ </view>
+  <view class="weui-article__p">理论上如此，但建议还是根据对方的专业背景、擅长领域来提问，节约自己的金钱，也节约双方的时间。骚扰、侮辱类的提问，在哪里都不受欢迎，在大咖问股上也不例外。 </view>
+  <view class="weui-article__h3">2、提问就一定能获得回复吗？</view>
+  <view class="weui-article__p">不一定，对方可以选择不回复您的提问。</view>
+  <view class="weui-article__h3">3、如何提高自己被回复的机率？ </view>
+  <view class="weui-article__p">几个可能有用的原则：
+  	<ul>
+ 		<li>a.尊重对方，有礼貌；</li>
+  		<li>b.看清楚对方的头衔和自我介绍，对方更有可能回复自己专业领域内的问题；</li>
+  		<li>c.做点功课，看看对方已回答了哪些问题，偷听几条，摸清对方的风格和脾气。</li>
+    </ul> 
+  </view>
+  <view class="weui-article__h3">4、我怎么知道自己的提问被回复了呢？</view>
+  <view class="weui-article__p">进入「大咖问股」模块，查看「我的」之「我问的」，即可知道。同时您也会受到系统发出的问股回复通知。 </view>
+  <view class="weui-article__h3">5、提的问题不被回答，会退钱吗？</view>
+  <view class="weui-article__p">会，如果您的问题72小时未被回答，问题付款将按照原支付路径退回。 </view>
+  <view class="weui-article__h3">6、有问题，但不知道该问谁，怎么办？</view>
+  <view class="weui-article__p">您可以先确定分类，然后再从该类别的答主里筛选，看看排序、个人介绍，尝试偷听几条答主过往的回答，大概就能确定该向谁提问了。</view>
+ 
+</view>
+</view>

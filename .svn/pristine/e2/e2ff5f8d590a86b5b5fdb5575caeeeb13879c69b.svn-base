@@ -1,0 +1,62 @@
+<import src="../kline/kline.wxml" />
+<!-- 个股头部指标 -->
+<view id="section_quotation">
+
+  <!-- Quotation(price, zd, zdf, open, high, low, hsl, syl, sjl, cjl, jl, zz, cje, lb, ltsz, date, time, color, goodsId) -->
+
+  <!-- 价格、涨跌、涨跌幅 -->
+  <view class="quota_price" style="color:{{quotation.color}};">{{quotation.price}}</view>
+  <view class="quota_change" style="color:{{quotation.color}};">{{quotation.change}}</view>
+  <view class="quota_changePct" style="color:{{quotation.color}};">{{quotation.changePct}}</view>
+
+  <!-- 开盘、最高、最低 -->
+  <text class="quota_item quota_row1 quota_colum3">开盘：</text>
+  <text class="quota_item quota_row2 quota_colum3">最高：</text>
+  <text class="quota_item quota_row3 quota_colum3">最低：</text>
+  <text class="quota_item quota_row1 quota_colum4">{{quotation.open}}</text>
+  <text class="quota_item quota_row2 quota_colum4">{{quotation.high}}</text>
+  <text class="quota_item quota_row3 quota_colum4">{{quotation.low}}</text>
+
+  <!-- 换手、市盈、市净 -->
+  <text class="quota_item quota_row1 quota_colum5">换手：</text>
+  <text class="quota_item quota_row2 quota_colum5">昨收：</text>
+  <text class="quota_item quota_row3 quota_colum5">振幅：</text>
+  <text class="quota_item quota_row1 quota_colum6">{{quotation.turnoverRate}}</text>
+  <text class="quota_item quota_row2 quota_colum6">{{quotation.closePrice}}</text>
+  <text class="quota_item quota_row3 quota_colum6">{{quotation.swing}}</text>
+
+  <!-- 成交量、净流、总值 -->
+  <text class="quota_item quota_row4 quota_colum1">成交量：</text>
+ <!-- <text class="quota_item quota_row4 quota_colum3">净流：</text>-->
+  <text class="quota_item quota_row4 quota_colum7">总 股 本：</text>
+  <text class="quota_item quota_row4 quota_colum2">{{quotation.volumn}}手</text>
+  <!--<text class="quota_item quota_row4 quota_colum4">{{quotation.jl}}</text>-->
+  <text class="quota_item quota_row4 quota_colum6">{{quotation.totalValue}}</text>
+
+  <!-- 成交额、量比、流值 -->
+  <text class="quota_item quota_row5 quota_colum1">成交额：</text>
+  <!--<text class="quota_item quota_row5 quota_colum3">总股本：</text>-->
+  <text class="quota_item quota_row5 quota_colum7">流通市值：</text>
+  <text class="quota_item quota_row5 quota_colum2">{{quotation.volumnPrice}}</text>
+  <!--<text class="quota_item quota_row5 quota_colum4">{{quotation.lb}}</text>-->
+  <text class="quota_item quota_row5 quota_colum6">{{quotation.circulationValue}}</text>
+</view>
+
+<!-- 走势图 -->
+<view id="selector_time">
+  <text style="background-color:{{currentTimeIndex == 0 ? '#eb333b' : '#f8f8f8'}}; color:{{currentTimeIndex == 0 ? '#ffffff' : '#353535'}}; border:{{currentTimeIndex == 0 ? '1rpx solid rgba(255, 255, 255, 0)' : '1rpx solid #dadada'}};" border-left: none;
+  bindtap="onPeriodSelectorClick" data-index="0">分时</text>
+  <text style="background-color:{{currentTimeIndex == 1 ? '#eb333b' : '#f8f8f8'}}; color:{{currentTimeIndex == 1 ? '#ffffff' : '#353535'}}; border:{{currentTimeIndex == 1 ? '1rpx solid rgba(255, 255, 255, 0)' : '1rpx solid #dadada'}}; border-left: none;"
+  bindtap="onPeriodSelectorClick" data-index="1">日K</text>
+  <text style="background-color:{{currentTimeIndex == 2 ? '#eb333b' : '#f8f8f8'}}; color:{{currentTimeIndex == 2 ? '#ffffff' : '#353535'}}; border:{{currentTimeIndex == 2 ? '1rpx solid rgba(255, 255, 255, 0)' : '1rpx solid #dadada'}}; border-left: none;"
+  bindtap="onPeriodSelectorClick" data-index="2">周K</text>
+  <text style="background-color:{{currentTimeIndex == 3 ? '#eb333b' : '#f8f8f8'}}; color:{{currentTimeIndex == 3 ? '#ffffff' : '#353535'}}; border:{{currentTimeIndex == 3 ? '1rpx solid rgba(255, 255, 255, 0)' : '1rpx solid #dadada'}}; border-left: none;"
+  bindtap="onPeriodSelectorClick" data-index="3">月K</text>
+</view>
+ <template is="kline" data="{{...quoteData}}" />
+
+<!-- 添加自选 
+<view id="section_add_zxg" bindtap="onZxgTap">
+  <image src="{{isAddToZxg ? '/images/remove_zxg.png' : '/images/add_zxg.png'}}"></image>
+  <text>{{isAddToZxg ? '删除自选' : '添加自选'}}</text>
+</view>-->

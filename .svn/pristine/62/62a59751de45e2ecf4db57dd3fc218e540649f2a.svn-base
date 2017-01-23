@@ -1,0 +1,105 @@
+<!--大咖-笔记详情-->
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			笔记详情
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{note.mycollected == 0}}">
+				<i  bindtap="cancelCollect" class="icon iconfont icon-shoucang text_font_24"></i>
+			</view>
+			<view class="weui-flex__item text_right" hidden="{{note.mycollected != 0}}">
+            	<i bindtap="collect" class="icon iconfont icon-shoucang1 text_font_24"></i>
+            </view>
+		</view>
+</view>
+
+<view class="weui-media-box bgfff">
+        <navigator url="/modules/bigname/detail/detail?userid={{note.note_authorid}}" class="weui-media-box_appmsg weui-flex__item">
+                <view class="weui-media-box__hd_in-appmsg img_36">
+                    <image class="weui-media-box__thumb img_Fillet img_all" src="{{note.author_ico}}" ></image>
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                    <view class="weui-media-box__title">{{note.note_author_name}}<small class="colred text_font_14"> | {{note.user_title}}</small></view>
+                    <view class="weui-media-box__desc">{{note.author_profiles}}</view>
+                </view>
+                <view class="follow_btn">
+                    <button class="btn_red_border" type="warn" plain="true"size="mini">加关注</button>
+                </view>
+        </navigator>
+</view>
+
+<view class="bgfff container">
+    <!--策略，显示免费笔记内容-->
+    <view wx:if="{{note.note_type == 1}}" class="weui-article__h2">{{note.free_note_content}}</view>
+    <!--资讯，显示摘要-->
+    <view wx:if="{{note.note_type == 3}}" class="weui-article__h2">{{note.note_summry}}</view>
+
+    <!--付费引导-->
+    <view class="weui-article__h2 text_center colred padding_top">{{note.pay_guide}}</view>
+
+    <!--付费笔记内容-->
+    <!--策略-->
+    <view wx:if="{{note.note_type == 1 && note.authority == 1}}" class="weui-article__h2">{{note.note_content}}</view>
+    <!--资讯-->
+    <view wx:if="{{note.note_type == 3}}" class="weui-article__h2">{{note.free_note_content}}</view>
+
+    <!--付费按钮-->
+    <view wx:if="{{note.note_type == 1 && note.authority == 0}}" class="text_center"><button class="btn_red" type="warn" plain="true"size="mini">支付{{note.note_price}}大咖币阅读精华部分</button></view>
+    <!--点赞按钮-->
+    <view class="text_center padding_top padding_bottom" hidden="{{note.mysatisfied != 0}}">
+		<image class="weui-media-box__thumb img_60" src="../../../resources/images/praised_ico_show.png" >
+		</image><view class="colred">超值</view>
+	</view>
+
+    <view class="weui-panel__ft border_t">
+        <view class="weui-media-box__info">
+             <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+             <view wx:if="{{note.note_type != 3}}" class="weui-media-box__info__meta">价值{{note.note_price}}大咖币</view>
+             <view class="weui-media-box__info__meta">{{note.reader_nums}}人读过</view>
+			 <view class="weui-media-box__info__meta">{{note.satisfied_nums}}人觉得超值 </view>
+        </view>
+     </view>
+</view>
+
+<view class="weui-panel weui-panel_access margin_bottom">
+     <view class="weui-panel__hd">热门评论</view>
+            <view class="weui-panel__bd">
+                <block wx:for="{{commentList}}" wx:key="id">
+                     <view class="border_b margin_10_15">
+                        <view class="weui-media-box_appmsg weui-flex__item position_re margin_top">
+                             <view class="weui-media-box__hd_in-appmsg img_36">
+                                  <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.commenterIco}}"></image>
+                             </view>
+                             <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                 <view class="weui-media-box__title">{{item.commenterName}}</view>
+                                 <view class="weui-media-box__desc">{{item.createTime}}</view>
+                             </view>
+                             <view class="follow_btn text_font_12">
+                                 <i class="icon iconfont icon-zantongfill"></i>{{item.bestNum}}
+                                 <i class="icon iconfont icon-liuyan"></i>{{item.lastComments.length}}
+                             </view>
+                             <view class="hot_pl_l padding_top">
+                                <view class="weui-article__h2">
+                                    <a href="javascript:void(0)">{{item.commentContent}}</a>
+                                </view>
+                                <view class="reply_box text_font_12 margin_bottom">
+                                    <block wx:for="{{item.lastComments}}" wx:for="twoLevelCmt" wx:key="id">
+                                        <view><span class="colblue">{{twoLevelCmt.commenterName}}：</span>{{twoLevelCmt.commentContent}}</view>
+                                    </block>
+                                </view>
+                             </view>
+                        </view>
+                     </view>
+                </block>
+        </view>
+</view>
+
+<!--底部浮动-->
+<view class="height_40"></view>
+<view class="fd_box">
+    <button class="fd_box_input box_Fillet60" type="default" plain="true"size="mini"><i class="icon iconfont icon-xinxifill"></i>发表精彩评论 免费获取5大咖币</button>
+</view>

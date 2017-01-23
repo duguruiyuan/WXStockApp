@@ -1,0 +1,186 @@
+<!--消费记录-->
+<!--顶部-->
+<import src="../templates/tab.wxml"/>
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			消费记录
+			</view>
+			<view class="weui-flex__item text_right">
+				
+			</view>
+		</view>
+</view>
+
+<view class="weui-flex bgred colwhite padding_10_15">
+    <view class="weui-flex__item text_font_16"><i class="icon iconfont icon-coin text_font_18"></i>大咖币余额：2000</view>
+    <view class="weui-flex__item text_font_16 text_right"><i class="icon iconfont icon-wenhao text_font_18 touMingDiv70"></i></view>
+</view>
+
+<view class="page bgfff" >
+    <view class="page__bd">
+        <view class="weui-tab">
+            <!--支出/收入/-->
+            <template is="tab" data="{{tabs:tabs,sliderLeft:sliderLeft,sliderOffset:sliderOffset}}"/>
+            <view class="weui-tab__panel">
+            <!--笔记-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                     <navigator class="container">
+                        <view class="news_li weui-flex">
+                            <view class="weui-flex__item">领取大咖币<view class="text_font_12 colgray">《如何打造自己的新股分析体系？》</view></view>
+                            <view class="text_right">+200<view class="text_font_12 colgray">2017-01-16</view></view>
+                        </view>
+                    </navigator>
+                    <navigator class="container">
+                        <view class="news_li weui-flex">
+                            <view class="weui-flex__item">领取大咖币</view>
+                            <view class="text_right">+200<view class="text_font_12 colgray">2017-01-16</view></view>
+                        </view>
+                    </navigator>
+                    <navigator class="container">
+                        <view class="news_li weui-flex">
+                            <view class="weui-flex__item">领取大咖币<view class="text_font_12 colgray">《如何打造自己的新股分析体系？》</view></view>
+                            <view class="text_right">+200<view class="text_font_12 colgray">2017-01-16</view></view>
+                        </view>
+                    </navigator>
+                </view>
+
+
+                <!--问股-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                       <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        
+
+                       <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+        
+                <!--课程-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+                  <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+                  <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+
+                </view>
+
+                
+            </view>
+        </view>
+    </view>
+</view>

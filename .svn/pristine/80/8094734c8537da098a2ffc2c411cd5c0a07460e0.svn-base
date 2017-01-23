@@ -1,0 +1,116 @@
+<!--大咖-设置-->
+<!--顶部-->
+<import src="../../templates/tab.wxml"/>
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			我的足迹
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<view class="page bgfff">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <!--问我的/我写的-->
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="width:{{1/tabs.length*10+'em'}};left:0px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <!--读过的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+                    <block wx:for="{{items}}" wx:key="contentid">
+
+                        <navigator url="/modules/note/detail/detail?noteid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item"></view>
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+
+                    </block>
+                </view>
+                <!--看过的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+                    <block wx:for="{{items}}" wx:key="contentid">
+
+                        <navigator url="/modules/course/detail/detail?courseid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item"></view>
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+
+                    </block>
+                </view>
+                <!--我问的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                   <block wx:for="{{items}}" wx:key="contentid">
+                    <view bindtap="toQuestinDeatil" bind-questionid="{{item.content}}" class="news_li container">
+                        <view class="weui-article__h2">{{item.title}}</view>
+                        <view class="news_li_foot weui-flex text_font_14 colgray">
+                            <view wx:if="{{item.question_answer_flag == 0}}" class="weui-flex__item"><span class="btn_red_border box_Fillet3">未回答</span></view>
+                            <view class="weui-flex__item text_right">{{item.question_answer_flag == 0?item.question_time:item.create_time}}</view>
+                        </view>
+                    </view>
+                   </block>
+                </view>
+
+                <!--我听的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
+                   <block wx:for="{{items}}" wx:key="contentid">
+                        <navigator url="/modules/question/detail/detail?questionid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+                   </block>
+                </view>
+
+                <!--问我的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+                   <block wx:for="{{items}}" wx:key="contentid">
+                        <navigator url="/modules/question/detail/detail?questionid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view wx:if="{{item.question_answer_flag == 0}}" class="weui-flex__item"><span class="btn_red_border box_Fillet3">未回答</span></view>
+                            <view class="weui-flex__item text_right">{{item.question_answer_flag == 0?item.question_time:item.create_time}}</view>
+                        </navigator>
+                   </block>
+                </view>
+
+                <!--我写的-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+                   <block wx:for="{{items}}" wx:key="contentid">
+                        <navigator url="/modules/note/detail/detail?noteid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item"></view>
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+                   </block>
+                </view>
+
+
+
+            </view>
+        </view>
+    </view>
+</view>
+
+

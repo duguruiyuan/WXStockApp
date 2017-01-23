@@ -1,0 +1,65 @@
+{
+  "pages":[
+    "modules/index/index",
+    "modules/bigname/index/index",
+    "modules/bigname/detail/detail",
+    "modules/note/index/index",
+    "modules/note/detail/detail",
+    "modules/question/index/index",
+    "modules/question/detail/detail",
+    "modules/market/market",
+    "modules/market/stock/stock",
+    "modules/my/index"
+  ],
+  "window":{
+    "navigationBarBackgroundColor":"#e93030",
+    "navigationBarTextStyle":"white",
+    "navigationBarTitleText":"大咖问股-看牛人如何炒股",
+    "enablePullDownRefresh":"true"
+  },
+  "tabBar":{
+    "color":"black",
+    "selectedColor":"#A30303",
+    "borderStyle":"white",
+    "backgroundColor":"white",
+    "list":[
+      {
+        "pagePath":"modules/index/index",
+        "text":"首页",
+        "iconPath":"resources/images/index.png",
+        "selectedIconPath":"resources/images/indexa.png"
+      },
+      {
+        "pagePath":"modules/bigname/index/index",
+        "text":"大咖",
+        "iconPath":"resources/images/bigname.png",
+        "selectedIconPath":"resources/images/bignamea.png"
+      },
+      {
+        "pagePath":"modules/note/index/index",
+        "text":"笔记",
+        "iconPath":"resources/images/note.png",
+        "selectedIconPath":"resources/images/note.png"
+      },
+      {
+        "pagePath":"modules/question/index/index",
+        "text":"问股",
+        "iconPath":"resources/images/my.png",
+        "selectedIconPath":"resources/images/mya.png"
+      },
+      {
+        "pagePath":"modules/market/market",
+        "text":"行情",
+        "iconPath":"resources/images/note.png",
+        "selectedIconPath":"resources/images/notea.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": "10000",
+    "uploadFile":"10000",
+    "downloadFile": "10000"
+  },
+  "debug":"true"
+
+}

@@ -1,0 +1,16 @@
+.entryway_box navigator{padding: 0 15px;margin:10px 0;}
+.entryway_box .weui-media-box__hd_in-appmsg {margin-right:.4em}
+@media screen and (max-width: 320px) {
+    .entryway_box .weui-media-box__hd_in-appmsg {
+        display:none
+    }
+}
+.i_nav { font-size: 16px;padding:5px 0; text-align: center;display: flex; flex-flow: row wrap; }
+.i_nav .i_nav_li{width:25%;margin:5px 0;}
+.i_nav text {display: block}
+.i_banner { width: 100%; height:80px; }
+/*热门话题*/
+.i_hot_topic .weui-media-box__desc{padding-bottom:20px;}
+
+/*首页浮动消息*/
+.i_news { width:36px; height:36px; line-height:36px; position:fixed; right:10px; bottom:50px; background:#e5c65c; color:#fff; display:block; text-align:center;}  

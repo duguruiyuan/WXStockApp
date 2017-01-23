@@ -1,0 +1,45 @@
+/**
+ * Created by caojie on 2017/1/14.
+ * 笔记列表
+ */
+const app = getApp();
+const path = "../../../common/";
+const {noteList,recommendData} =  require(path+"data.js").dataHepler;
+const POSITION_ID_NOTE = 2;
+let page = {
+    data:{
+        "recData":[],//推荐阅读
+        "allList":[],//全部笔记列表
+        "noticeList":[],//关注的笔记列表
+        "currentList":2//当前列表，默认全部
+    },
+    getRecData:function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_NOTE);
+        this.recData.nextPage(data => this.setData({"recData":data}));
+    },
+    getNoteList:function (list_type) {
+        this.noteList = this.noteList || new noteList(1,list_type);
+        this.noteList.nextPage(data => this.setData({"noteList":data}));
+    },
+    onLoad:function () {
+        this.getRecData();
+        this.getNoteList(this.data.currentList);
+    },
+    switchTab:function (type) {
+        this.data.currentList = type;
+        let needLoad = false;
+        if(type == 1){
+            needLoad = !this.data.noticeList.length;
+        }else if(type == 2){
+            needLoad = !this.data.allList.length;
+        }
+        needLoad && this.getNoteList(type);
+    },
+    toNoteDetail:function (noteid) {
+        wx.redirectTo({url:`../detail?id=${noteid}`});
+    },
+    refresh:()=> this.getNoteList(this.data.currentList)
+    
+}
+
+Page(page);

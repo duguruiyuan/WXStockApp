@@ -1,0 +1,26 @@
+<view>
+    <text>股票代码</text>
+    <view>
+        <scroll-view scroll-y="true" style="height: 500px;">
+            <view>板块</view>
+            <view>涨幅榜</view>
+            <view id="zhangfudata" wx:for="{{zhangfu}}" wx:key="code">
+                <navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+                    {{index}}: {{item.name}} -- {{item.code}} -- {{item.changeRate}}
+                </navigator>
+            </view>
+            <view>跌幅榜</view>
+            <view id="diefudata" wx:for="{{diefu}}" wx:key="code">
+                <navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+                    {{index}}: {{item.name}} -- {{item.code}} -- {{item.changeRate}}
+                </navigator>
+            </view>
+            <view>振幅榜</view>
+            <view id="zhenfudata" wx:for="{{zhenfu}}" wx:key="code">
+                <navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+                    {{index}}: {{item.name}} -- {{item.code}} -- {{item.changeRate}}
+                </navigator>
+            </view>
+        </scroll-view>
+    </view>
+</view>

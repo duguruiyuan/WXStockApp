@@ -1,0 +1,34 @@
+/*找大咖---------------独立*/
+.find_dk_lb { background:url(../../resources/images/dk_bg_img.png) left top; background-size:100% 100%; padding:15px;}
+.tag_bg { background:url(../../resources/images/tag_bg.png) no-repeat right top; color:#fff; display:block; text-align:center; width:70px; height:18px; line-height:18px; background-size:100% auto; margin:0 auto;}
+.find_dk_mid { margin-top:-20px; position:relative}
+.carousel-indicators { bottom:0;}
+.translate_pic { width:10px;height:240px;}
+.translate_pic image{ width:10px;height:240px;}
+.left_translate { position:absolute; left:-10px; top:10px;}
+.right_translate { position:absolute; right:-10px; top:10px;}
+.find_dk_lb .weui-flex__item {padding:10px 3px;}
+
+
+/*大咖-笔记/课程/问股---------------独立*/
+.dk_content { background:url(../../resources/images/dk_bg_img.png) left top; background-size:100% 100%; padding:15px;}
+.dk_content small{ color:#fff}
+.dk_tag i{ font-style:normal; font-size:12px; color:#fdff9c; margin:0 2px; padding:2px; border:#fdff9c solid 1px;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius:3px;}
+.dk_content navigator {position:relative}
+.dk_num {border-top:none 0;}
+.dk_num .weui-flex__item { margin: 10px 0}
+
+/*时间轴笔记*/
+.time_axis { padding-left:15px;}
+.border_time { color:#999}
+.border_time image{ margin-left:-22px; margin-right:8px;}
+.play_img { position:relative; height:150px;text-align:center;overflow: hidden}
+.play_img .paly_ico { margin: auto; top: 0; left: 0; bottom: 0;right: 0; z-index: 2; position:absolute}
+
+.class_li {}
+.class_li_name {line-height:18px}
+.class_li_name span {display: block}
+
+
+/*大咖-笔记列表---------------独立*/
+.tj_bag {  background:url(../../resources/images/note_label_ico.png) no-repeat; width:56px; height:24px; line-height:24px; margin-right:5px; font-size:14px; background-size:100% 100%; color:#fff; text-align:center}

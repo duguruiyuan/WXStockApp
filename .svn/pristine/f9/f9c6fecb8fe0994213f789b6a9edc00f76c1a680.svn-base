@@ -1,0 +1,134 @@
+<!--顶部-->
+<view class="header">
+    <view class="weui-flex container">
+        <view class="weui-flex__item">
+            <image class="img_Fillet img_36 icon"
+                   src="../../resources/images/photo_none.png"></image>
+        </view>
+        <view class="weui-flex__item text_center position_re">
+            <view class="weui-flex nav_t_tab box_Fillet3">
+                <navigator class="weui-flex__item" url="/modules/market/optional/optional" open-type="redirect">自选</navigator>
+                <view class="weui-flex__item active">行情</view>
+            </view>
+        </view>
+        <view class="weui-flex__item text_right">
+            <navigator url="/modules/market/search/search"><i class="icon iconfont icon-llhomesearch text_font_24"></i></navigator>
+        </view>
+    </view>
+</view>
+
+<view class="weui-flex flex_flow hq_box_li">
+<view class="weui-flex__item box_border_r" wx:for="{{indexData}}" wx:key="{{index}}">
+    <navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}">
+    <view class="text_font_18">{{item.name}}
+        <view class="{{item.color}}">{{item.price}}</view>
+    </view>
+    <view class="weui-flex text_font_12 {{item.color}}">
+        <view class="weui-flex__item">{{item.change}}</view>
+        <view class="weui-flex__item">{{item.changeRate}}</view>
+    </view>
+    </navigator>
+</view>
+</view>
+
+        <!--板块-->
+<view class="weui-flex container margin_top">
+<view class="weui-flex__item">
+    <i class="icon iconfont icon-xiangxia2"></i><!--<i class="icon iconfont icon-right"></i>-->
+    板块
+</view>
+<view>
+    <navigator class="icon iconfont icon-gengduo" url="/modules/market/plate/plate"></navigator>
+</view>
+</view>
+<view class="weui-grids bgfff text_center">
+
+    <view wx:for="{{plateData}}" wx:key="{{index}}">
+        <navigator url=""class="weui-grid" hover-class="weui-grid_active">
+        <view class="text_font_18">{{item.trade}}
+            <view class="{{item.color}}">{{item.tradeRate}}</view>
+            <view class="text_font_12 colgray">{{item.name}}</view>
+        </view>
+        <view class="weui-flex text_font_12 {{item.color}}">
+            <view class="weui-flex__item">{{item.change}}</view>
+            <view class="weui-flex__item">{{item.changeRate}}</view>
+        </view>
+        </navigator>
+    </view>
+
+
+
+
+
+
+</view>
+
+        <!--涨幅榜-->
+<view class="weui-flex container margin_top">
+<view class="weui-flex__item">
+    <i class="icon iconfont icon-xiangxia2"></i><!--<i class="icon iconfont icon-right"></i>-->
+    涨幅榜
+</view>
+<view>
+    <i class="icon iconfont icon-gengduo"></i>
+</view>
+</view>
+
+<view class="all_table_box bgfff" id="zhangfudata" wx:for="{{zhangfu}}" wx:key="code">
+<navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+    <view class="all_table">
+        <view class="all_table_li">{{item.name}}
+            <view class="colgray text_font_14">{{item.code}}</view>
+        </view>
+        <view class="all_table_li text_center colred">{{item.price}}</view>
+        <view class="all_table_li text_right colred">{{item.changeRate}}%</view>
+    </view>
+</navigator>
+</view>
+
+        <!--跌幅榜-->
+<view class="weui-flex container margin_top">
+<view class="weui-flex__item">
+    <i class="icon iconfont icon-xiangxia2"></i><!--<i class="icon iconfont icon-right"></i>-->
+    跌幅榜
+</view>
+<view>
+    <i class="icon iconfont icon-gengduo"></i>
+</view>
+</view>
+<view class="all_table_box bgfff" id="diefudata" wx:for="{{diefu}}" wx:key="code">
+<navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+    <view class="all_table">
+        <view class="all_table_li">{{item.name}}
+            <view class="colgray text_font_14">{{item.code}}</view>
+        </view>
+        <view class="all_table_li text_center colgreen">{{item.price}}</view>
+        <view class="all_table_li text_right colgreen">{{item.changeRate}}%</view>
+    </view>
+</navigator>
+</view>
+
+
+        <!--振幅榜-->
+<view class="weui-flex container margin_top">
+<view class="weui-flex__item">
+    <i class="icon iconfont icon-xiangxia2"></i><!--<i class="icon iconfont icon-right"></i>-->
+    振幅榜
+</view>
+<view>
+    <i class="icon iconfont icon-gengduo"></i>
+</view>
+</view>
+<view class="all_table_box bgfff" id="zhenfudata" wx:for="{{zhenfu}}" wx:key="code">
+<navigator url="stock/stock?code={{item.code}}&name={{item.name}}&id={{item.id}}" open-type="navigate">
+    <view class="all_table">
+        <view class="all_table_li">{{item.name}}
+            <view class="text_font_14 colgray">{{item.code}}</view>
+        </view>
+        <view class="all_table_li text_center">{{item.price}}</view>
+        <view class="all_table_li text_right">{{item.changeRate}}%</view>
+    </view>
+</navigator>
+</view>
+
+

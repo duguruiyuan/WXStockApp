@@ -1,0 +1,35 @@
+<!--大咖-修改资料-->
+<!--顶部-->
+<import src="../../templates/tab.wxml"/>
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			修改资料
+			</view>
+			<view class="weui-flex__item text_right">
+				
+			</view>
+		</view>
+</view>
+
+
+
+<view class="weui-cells weui-cells_after-title margin_bottom">
+            <navigator url="name/name" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">昵称</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access">田春艳</view>
+            </navigator>
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">身份</view>
+                <view class="weui-cell__ft">大咖老师</view>
+            </navigator>
+            <navigator url="answer_price/answer_price" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">我的每次回答价值</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><span class="colred">20</span>大咖币</view>
+            </navigator>
+</view>
+
+

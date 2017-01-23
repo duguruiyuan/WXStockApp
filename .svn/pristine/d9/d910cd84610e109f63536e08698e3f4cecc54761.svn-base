@@ -1,0 +1,30 @@
+/**
+ * Created by caojie on 2017/1/15.
+ * 课程首页
+ */
+const path = "../../../common/";
+const {noteList,recommendData} =  require(path+"data.js").dataHepler;
+const POSITION_ID_COURSE = 200103;
+let page ={
+    data:{
+        "recData":[],//推荐
+        "courseList":[]//课程列表
+    },
+    getRecData:function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_COURSE);
+        this.recData.nextPage(data => this.setData({"recData":data}));
+    },
+    getCourseList:function () {
+        this.noteList = this.noteList || new noteList(2);
+        this.noteList.nextPage(data => this.setData({"noteList":data}));
+    },
+    onLoad:function () {
+        this.getRecData();
+        this.getCourseList();
+    },
+    toCourseDetail:function (noteid) {
+        wx.redirectTo({url:`../detail?id=${noteid}`});
+    },
+    refresh:()=> this.getCourseList()
+}
+

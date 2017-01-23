@@ -1,0 +1,73 @@
+<import src="../../templates/windows.wxml"/>
+<!--顶部-->
+<view class="header">
+    <view class="weui-flex container">
+        <view class="">
+            <i class="icon iconfont icon-left text_font_24"></i>
+        </view>
+        <view class="weui-flex__item text_center">
+            论股-{{codeName}}
+        </view>
+        <view class="text_right">
+        </view>
+    </view>
+</view>
+
+<view class="bgfff container">
+<view class="border_b" wx:for="{{stockDiscussData}}" wx:key="{{index}}">
+    <view class="weui-media-box_appmsg weui-flex__item padding_top">
+        <view class="weui-media-box__hd_in-appmsg img_36">
+            <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.user[0].user_ico}}"></image>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item.user[0].user_name}}</view>
+            <view class="weui-media-box__desc">{{item.create_time}}</view>
+        </view>
+        <view class="text_font_12 colgray">
+            <view id="{{item.id}}" bindtap="replyPopup"><i class="icon iconfont icon-liuyan"></i>回复</view>
+            <view id="{{item.id}}" bindtap="fabulous"><i class="icon iconfont icon-zantongfill"></i>{{item.likes_num == null ? 0 : item.likes_num}}</view>
+        </view>
+    </view>
+    <view class="hot_pl_l padding_top">
+        <view class="weui-article__h2">
+            <a href="javascript:void(0)">{{item.content}}</a>
+        </view>
+        <view class="reply_box text_font_12 margin_bottom">
+            <view wx:for="{{item.replyData}}" wx:for-item="replyItem" wx:key="{{index}}"><span class="colblue">
+                {{replyItem.user[0].user_name}}：</span>{{replyItem.content}}
+            </view>
+        </view>
+    </view>
+</view>
+</view>
+
+<!--评论弹窗-->
+<view  style="display: {{ showPopup ? display : 'none'}};">
+<view class="weui-mask" style="display:{{showPopup ? display : 'none'}}"></view>
+<view class="foot_dialog bgfff">
+    <view class="weui-cells__title weui-flex">
+        <view class="weui-flex__item colred">论股-{{popTitle}}</view>
+        <view bindtap="hide">取消</view>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea value="{{popContent}}" maxlength="200"  auto-focus="true" bindinput="input"
+                         class="weui-textarea" style="height: 4.5em" />
+                <view class="weui-textarea-counter">{{len || 0}}/{{maxLength}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-btn-area text_right">
+        <button class="weui-btn" type="warn" bindtap="{{isReply ? 'sendReply' : 'send'}}" size="mini">发送</button>
+    </view>
+</view>
+</view>
+
+ <!--底部浮动-->
+<view class="height_50"></view>
+<view class="fd_box">
+<button class="fd_box_input box_Fillet60" bindtap="popup" type="default" plain="true" size="mini"><i
+        class="icon iconfont icon-xinxifill"></i>发表精彩评论 免费获取5大咖币
+</button>
+</view>

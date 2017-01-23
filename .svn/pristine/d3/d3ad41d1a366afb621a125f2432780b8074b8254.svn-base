@@ -1,0 +1,32 @@
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			关于大咖问股
+			</view>
+			<view class="weui-flex__item text_right">
+				
+			</view>
+		</view>
+</view>
+<view class="weui-cells weui-cells_after-title margin_bottom">
+            <navigator url="versions/versions"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">版本信息 V2.0</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="statement/statement"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">免责声明</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="rule/rule"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">发布规则</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+            <navigator url="opinion/opinion"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class="weui-cell__bd">意见反馈</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            </navigator>
+			
+</view>

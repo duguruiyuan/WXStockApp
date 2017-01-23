@@ -1,0 +1,69 @@
+<import src="../../templates/windows.wxml"/>
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+    		<i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			提问
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<view class="page bgfff">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <!--我的关注/热门推荐-->
+            <view class="weui-navbar">
+                <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+                    <view class="weui-panel__bd">
+                        <block wx:for="{{myNoticeList}}" wx:key="userid">
+                            <navigator url="../detail/detail?userid={{item.userid}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                                    <image src="{{item.user_ico}}" class="img_60 img_Fillet"></image>
+                                </view>
+                                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                    <view class="weui-media-box__title">{{item.user_name}}<small class="colred text_font_14"> | {{item.user_title}}</small></view>
+                                    <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                                    <view class="weui-media-box__desc">关注：{{item.user_notice_num}}</view>
+                                </view>
+                                <view><button class="" data-bigname="{{item}}" catchtap="ask" type="warn" plain="true"size="mini">提问</button></view>
+                            </navigator>
+                        </block>
+                    </view>
+
+                </view>
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                    <block wx:for="{{recList}}" wx:key="id">
+                            <navigator url="../detail/detail?userid={{item.contents.userid}}" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                                    <image src="{{item.contents.user_ico}}" class="img_60 img_Fillet"></image>
+                                </view>
+                                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                    <view class="weui-media-box__title">{{item.contents.user_name}}<small class="colred text_font_14"> | {{item.contents.user_title}}</small></view>
+                                    <view class="weui-media-box__desc">{{item.contents.user_profiles}}</view>
+                                    <view class="weui-media-box__desc">关注：{{item.contents.user_noticer_nums}}</view>
+                                </view>
+                                <view class="follow_btn"><button class="" data-bigname="{{item}}" catchtap="ask" type="warn" plain="true"size="mini">提问</button></view>
+                            </navigator>
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!--提问弹窗-->
+<template  is="askQuestion" data="{{user:bigname,opacity:opacity,len:len,maxLength:maxLength,display:display,content:content}}"/>
+

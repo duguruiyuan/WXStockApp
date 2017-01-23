@@ -1,0 +1,63 @@
+.user-info{
+    padding: 5px 5px;
+    background-image: url(/resources/images/grzxbj.jpg);
+    background-size: 100% 100%;
+}
+
+
+.user-info .top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info .top .right{
+     width: 70%;
+     height: 80px;
+}
+
+.op-btn{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.op-btn button{
+    margin: 0;
+    margin-right: 20px;
+    padding: 0;
+    height:100%;
+    font-size: 0.8rem;
+    width: 40%;
+}
+
+.user-info .bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom .my-item{
+    margin:0 20px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center .user-profiles{
+    border: 2px solid #ccc;
+    margin: 0 auto;
+    width: 90%;
+    padding: 5px 5px;
+}
+
+.my-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.my-list view{
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}

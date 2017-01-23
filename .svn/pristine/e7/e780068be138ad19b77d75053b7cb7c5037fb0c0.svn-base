@@ -1,0 +1,29 @@
+<!--课程列表模板-->
+<template name="class_card">
+    <view class="wrap-content">
+        <view class="content-top">
+            <image class="img45 fl margin-top-middle" src="{{item.author_ico}}"></image>
+            
+            <view class="rightside">
+            <span class="text-content">{{item.note_author_name}}</span>
+            <span class="red-circle">{{item.user_title || "股市牛散"}}</span>
+            <view class="text-small">{{item.author_profiles}}</view>
+            </view>
+        </view>
+
+        <view>
+            {{item.note_summry}}
+        </view>
+
+        <view class="video-img flex-wrap flex_center" style="background-image:url({{item.note_img}})">
+            <view class="play-ico"></view>
+        </view>
+
+        <view>
+            <image src="/resources/images/time_fb_f.png" class="ico ico-16"></image>
+            <span class="text-middle">
+            {{item.note_time}},{{item.reader_nums}}读过,{{item.satisfied_nums}}觉得超值
+            </span>
+        </view>
+    </view>  
+</template>  

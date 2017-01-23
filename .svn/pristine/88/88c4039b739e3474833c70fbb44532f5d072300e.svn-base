@@ -1,0 +1,16 @@
+/**
+ *列表类（超类）
+ */
+class SuperData {
+    constructor(page_no = 1, page_size = 10) {
+        this.page_no = page_no;
+        this.page_size = page_size;
+        this.data = [];
+    }
+
+    handelData(res) {
+        let items = res.data;
+        this.page_no += 1;
+        Array.prototype.push.apply(this.data, items);
+    }
+}

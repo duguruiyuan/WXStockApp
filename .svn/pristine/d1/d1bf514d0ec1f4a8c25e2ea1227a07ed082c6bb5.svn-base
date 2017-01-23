@@ -1,0 +1,94 @@
+{
+  "pages":[
+    "modules/index/index",
+    "modules/zt/zt",
+    "modules/bigname/index/index",
+    "modules/bigname/detail/detail",
+    "modules/bigname/hot/hot",
+    "modules/note/index/index",
+    "modules/note/detail/detail",
+    "modules/question/index/index",
+    "modules/question/detail/detail",
+    "modules/course/index/index",
+    "modules/course/detail/detail",
+    "modules/market/market",
+    "modules/market/stock/stock",
+    "modules/market/search/search",
+    "modules/market/optional/optional",
+    "modules/market/stockdiscuss/stockdiscuss",
+    "modules/market/plate/plate",
+    "modules/market/rank/rank",
+    "modules/my/index",
+    "modules/my/myself/myself",
+    "modules/my/myself/portrait/portrait",
+    "modules/my/myself/name/name",
+    "modules/my/myself/answer_price/answer_price",
+    "modules/my/attention/attention",
+    "modules/my/collection/collection",
+    "modules/my/footprint/footprint",
+    "modules/my/variable/freeMoney",
+    "modules/my/payExpense/payExpense",
+    "modules/my/share/share",
+    "modules/my/aboutUs/aboutUs",
+    "modules/my/aboutUs/versions/versions",
+    "modules/my/aboutUs/statement/statement",
+    "modules/my/aboutUs/rule/rule",
+    "modules/my/aboutUs/opinion/opinion",
+    "modules/my/handBook/handBook"
+   
+  ],
+  "window":{
+    "navigationBarBackgroundColor":"#e93030",
+    "navigationBarTextStyle":"white",
+    "navigationBarTitleText":"大咖问股-看牛人如何炒股",
+    "enablePullDownRefresh":"true"
+  },
+  "tabBar":{
+    "color":"#575757",
+    "selectedColor":"#e93030",
+    "backgroundColor":"#eeeeee",
+    "borderStyle": "white",
+    "list":[
+      {
+        "pagePath":"modules/index/index",
+        "text":"首页",
+        "iconPath":"resources/images/nav_sy.png",
+        "selectedIconPath":"resources/images/nav_sy_show.png"
+      },
+      {
+        "pagePath":"modules/bigname/index/index",
+        "text":"大咖",
+        "iconPath":"resources/images/nav_dk.png",
+        "selectedIconPath":"resources/images/nav_dk_show.png"
+      },
+      {
+        "pagePath":"modules/note/index/index",
+        "text":"笔记",
+        "iconPath":"resources/images/nav_bj.png",
+        "selectedIconPath":"resources/images/nav_bj_show.png"
+      },
+      {
+        "pagePath":"modules/question/index/index",
+        "text":"问股",
+        "iconPath":"resources/images/nav_wg.png",
+        "selectedIconPath":"resources/images/nav_wg_show.png"
+      },
+      {
+        "pagePath":"modules/market/market",
+        "text":"自选",
+        "iconPath":"resources/images/nav_zx.png",
+        "selectedIconPath":"resources/images/nav_zx_show.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": "10000",
+    "uploadFile":"10000",
+    "downloadFile": "10000"
+  },
+  "debug":"true"
+
+}
+
+
+

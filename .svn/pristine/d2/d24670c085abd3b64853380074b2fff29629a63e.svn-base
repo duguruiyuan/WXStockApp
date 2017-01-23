@@ -1,0 +1,8 @@
+/**
+ * Created by Administrator on 2016/11/14.
+ */
+Page({
+   data:{
+      "title":"个人中心"
+   }
+})

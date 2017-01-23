@@ -1,0 +1,78 @@
+/**
+ * Created by caojie on 2017/1/13.
+ * 数据工厂类，请求数据
+ */
+const urls = require("const.js").const.url;
+const http = require("http.js").http;
+const common = require("utils.js").common;
+
+class SuperData{
+    constructor(page_no=0,page_size=10){
+        this.page_no = page_no;
+        this.page_size = page_size;
+        this.data = [];
+    }
+    handelData(res){
+        let items = res.data;
+        this.page_no+=1;
+        Array.prototype.push.apply(this.data,items);
+    }
+}
+
+/**
+ * 推荐数据
+ */
+class RecommendData{
+    constructor(positionid,page_no,page_size){
+        this.page_no = page_no;
+        this.page_size = page_size;
+        this.positionid = positionid;
+        this.data = [];
+    }
+    nextPage(cb){
+        let param = {};
+        ({positionid:param.positionid} = this);
+        //-----如果page_no不等于空,page_size不等于空,表明是分页查询,则加入到请求参数
+        let isPageination = common.isNotNull(this.page_no) && common.isNotNull(this.page_size);
+        isPageination &&
+        ({page_no:param.page_no,page_size:param.page_size} = this);
+        http.get(urls.recommend,param).then(res=>{
+            if(isPageination) {
+                this.page_no+=1;
+            }
+            Array.prototype.push.apply(this.data,res.data);
+            typeof cb == "function" && cb(this.data);
+        });
+
+    }
+}
+
+/**
+ * 大咖列表数据
+ * @param list_type 列表类型 1我关注的  2全部、默认全部
+ * @param order_type 排序方式 1 order_type的值倒序、2 关注量倒序、 默认最近发布笔记日期倒序
+ * @constructor
+ */
+class BignameList extends SuperData {
+    constructor(list_type=2,order_type = 1){
+        super();
+        [this.list_type,this.order_type] = [list_type,order_type];
+    }
+    nextPage(cb){
+        let params = {
+            page_no:this.page_no,
+            page_size:this.page_size,
+            list_type:this.list_type,
+            order_type:this.order_type
+        };
+        http.get(urls.bigname_index,params).then(res => {
+            this.handelData(res);
+            typeof cb == "function" && cb(this.data);
+        });
+    }
+}
+
+module.exports.dataHepler = {
+    recommendData:RecommendData,
+    bignameList:BignameList
+};

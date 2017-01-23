@@ -1,0 +1,229 @@
+/**
+ * Created by cj on 2017/1/14.
+ * 公有的操作方法 比如关注用户，取消关注，超值,订阅等
+ */
+import Promise from "../resources/lib/promise.min"
+const http = require("http.js").http;
+const urls = require("const.js").const.url;
+const {common, dateUtil,windowHelper} = require("utils.js");
+const app = getApp();
+//========用户关注相关======
+let NoticeHelper = {
+    notice: function (userid) {
+        return http.post(urls.notice_user, {userid: userid}).then((data)=> {
+            windowHelper.popNoticeOk("关注成功");
+            return Promise.resolve();
+        });
+    },
+    cancel: function (userid) {
+        return new Promise((resolve,reject)=>{
+            windowHelper.confirm("确定不在关注此人?",function () {
+                http.post(urls.cancel_notice_user, {userid: userid}).then(() => {
+                    resolve();
+                });
+            })
+        })
+    }
+}
+
+let CollectHelper = {};
+CollectHelper.collect = function(url,param){
+   return http.post(url,param).then(res=>{
+       windowHelper.popSuccess("收藏成功,请到个人中心查看");
+       return Promise.resolve();
+   });
+}
+CollectHelper.cancel = function(url,param){
+    return new Promise(function(resolve,reject){
+        windowHelper.confirm("确定取消收藏?",function () {
+            http.post(url,param).then(res=>resolve());
+        });
+    });
+}
+
+//笔记收藏
+let NoteCollecter = {}
+NoteCollecter.collect = function(noteid){
+    let url = urls.note_collect;
+    return CollectHelper.collect(url,{'noteid':noteid});
+}
+NoteCollecter.cancel = function(noteid){
+    let url = urls.note_cancel_collect;
+    return CollectHelper.cancel(url,{"noteid":noteid});
+}
+
+//问股收藏
+let  QuestionCollecter = {}
+QuestionCollecter.collect = function(questionid){
+    let url = urls.question_collect;
+    return CollectHelper.collect(url,{'questionid':questionid});
+}
+QuestionCollecter.cancel = function(questionid){
+    let url = urls.question_cancel_collect;
+    return CollectHelper.cancel(url,{'questionid':questionid});
+}
+
+/**********支付工具****************/
+let PayHelper = function (url, param, payNum) {
+    Object.assign(this, {url, param, payNum});
+}
+//是否有足够大咖币
+PayHelper.prototype.hasEnougthCoin = function () {
+    return http.get(urls.query_balance).then(({data:balance=0}=data) => {
+        let num = Math.ceil(Number.parseInt(balance));
+        //余额大于等于支付费用可以支付
+        return Promise.resolve({result: num >= this.payNum, balance: num});
+    });
+}
+PayHelper.prototype.pay = function (cb) {
+
+    /**
+     * 确认支付
+     * @param url
+     * @param param
+     */
+    function toPay(url, param) {
+        http.post(url, param).then(data=>cb(data));
+    }
+
+    /**
+     * 获取更多大咖币
+     */
+    function getMoreCoin() {
+        wx.redirectTo({url: '../modules/my/activity/activity'});
+    }
+
+
+    this.hasEnougthCoin().then(data=> {
+        //获取余额是否充足,以及余额
+        let {result, balance} = data;
+        let content = "";//提示信息,执行
+        let _fun = null;//执行的函数
+        //如果可以支付，则支付，否则提示获取更多大咖币
+        if (result == true) {
+            content = `您拥有${balance}个大咖币,确认支付？`
+            _fun = toPay;
+        } else {
+            content = `余额不足,是否获取更多大咖币？`;
+            _fun = getMoreCoin;
+        }
+        windowHelper.confirm(content,()=>_fun(this.url, this.param));
+    });
+};
+
+/*****提交一条文本数据 主要用于 提问,评论*******/
+let submitOneTxt = {};
+/**
+ * 配置
+ * @param maxLength 最长长度
+ * @param minLength 最短长度
+ */
+submitOneTxt.config = function (maxLength, minLength) {
+    this.maxLength = maxLength;
+    this.minLength = minLength;
+}
+/**
+ * 弹出窗口
+ * @param maxLength 可以发表的最大长度
+ */
+submitOneTxt.popup = function () {
+    this.setData({
+        display: "block",
+        maxLength: this.maxLength
+    });
+}
+//关注窗口
+submitOneTxt.hide = function () {
+    this.setData({
+        display: "none",
+        content:""
+    });
+}
+//检查长度
+submitOneTxt.checkLength = function () {
+    return this.content.length > this.minLength;
+}
+/**
+ * 监控输入时的长度
+ * @param e
+ */
+submitOneTxt.input = function (e) {
+    let value = this.content = e.detail.value;
+    this.setData({len: this.maxLength - value.length});
+}
+
+
+/**
+ *提问
+ */
+let QuestionHelper = common.copy(submitOneTxt);
+QuestionHelper.config(200, 5);
+//提交问题
+QuestionHelper.send = function (e) {
+    let {answer_price, answer_id} = e.currentTarget.dataset;
+    let isValid = this.checkLength();
+    if (!isValid) {
+        showAlert("提交的问题不能少于5个字哟");
+        return;
+    }
+    let url = urls.question_submit;
+    let param = {
+        answer_userid: answer_id,
+        total_fee: answer_price,
+        question_content: this.content
+    }
+    let that = this;
+    new PayHelper(url, param, answer_price).pay(function () {
+        that.hide();
+        showAlert("恭喜您提问成功，请耐心等待大咖的回答哟!!");
+    });
+}
+
+/**
+ * 评论
+ */
+let CommentHelper = common.copy(submitOneTxt);
+CommentHelper.config(200, 1);
+CommentHelper.send = function (e) {
+    let {noteid,level, parentcommentid=null} = e.currentTarget.dataset;
+    let isValid = this.checkLength();
+    if (!isValid) {
+        showAlert("提交的问题不能少于5个字哟");
+        return;
+    }
+    let url = urls.note_comment;
+    let param = {
+        noteid: noteid,
+        commentLev: level,
+        parentCommentid: parentcommentid,
+        commentContent: this.content
+    }
+    http.post(url, param).then(()=> {
+        this.hide();
+        level = Number.parseInt(level);
+        let user = app.getUserInfo();
+        let newCmt = {
+            commenterIco: user.user_ico,
+            commenterName: user.user_name,
+            commentContent: this.content,
+            iBest:1,
+            createTime: dateUtil.formatDate(Date.now())
+        }
+        if (level == 1) {
+            this.data.commentList.push(newCmt);
+        } else if (level == 2) {
+            let parentCmt = this.data.commentList.find(item=> item.id = parentcommentid);
+            parentCmt.lastComments.push(newCmt);
+        }
+        this.setData({noMore:true,commentList:this.data.commentList});
+    })
+}
+
+module.exports.handlers = {
+    noticeHelper: NoticeHelper,
+    noteCollectHelper:NoteCollecter,
+    questionCollectHelper:QuestionCollecter,
+    payHelper: PayHelper,
+    questionHelper: QuestionHelper,
+    commentHelper:CommentHelper,
+}

@@ -1,0 +1,145 @@
+/**
+ * Created by cj on 2016/1/9.
+ * 大咖问股配置文件
+ */
+const debug = false,
+    apiDomain = "http://wxsmall.tunnel.2bdata.com",//api 域名配置 //http://www.dakawengu.com
+    resourceDomain = "http://wxsmall.tunnel.2bdata.com/resources/data/",//本机环境
+    STOCKAPI = "http://stockapi2.dakawengu.com",
+    TESTHTTP = "http://121.41.107.236:8085",//"https://ba7lh5.yiyoudata.com",
+    debugUrl = {
+        //登录
+        login: resourceDomain + "login.json",
+        //大咖列表
+        bigname_index: resourceDomain + "bigname_index.json",
+        //推荐大咖
+        recommend: resourceDomain + "bigname_rec.json"
+    },
+    onlineUrl = {
+        //登录
+        login: apiDomain + "/api/user/wxMiniLogin.do",
+        //个人信息
+        user_detail: apiDomain + "/api/user/detail.do",
+        //大咖币余额
+        query_balance: apiDomain + "/api/user/queryCoin.do",
+        //修改个人信息
+        query_balance: apiDomain + "/api/bigname/user_set.do",
+        //消费记录（支出）
+        query_Consurme: apiDomain + "/api/user/queryConsume.do",
+        //消费记录（收入）
+        query_Income: apiDomain + "/api/user/queryIncome.do",
+        //推荐接口
+        recommend: apiDomain + "/api/index/reccontent.do",
+        //大咖列表
+        bigname_list: apiDomain + "/api/bigname/list.do",
+        //大咖详情
+        bigname_detail: apiDomain + "/api/bigname/detail.do",
+        //关注用户
+        notice_user: apiDomain + "/api/bigname/notice.do",
+        //取消关注
+        cancel_notice_user: apiDomain + "/api/bigname/cancel.do",
+        //笔记列表
+        note_list: apiDomain + "/api/noteInterface/list.do",
+        //问股列表
+        question_list: apiDomain + "/api/question/list.do",
+        //提问
+        question_submit: apiDomain + "/api/question/question_submit.do",
+        //笔记详情
+        note_detail: apiDomain + "/api/noteInterface/detail.do",
+        //笔记评论列表
+        note_comment_list: apiDomain + "/api/noteInterface/queryComments.do",
+        //笔记付费
+        note_pay: apiDomain + "/api/business/note/pay.do",
+        //问股付费
+        question_pay: apiDomain + "/api/business/question/listen/pay.do",
+        //笔记点赞
+        note_support: apiDomain + "/api/noteInterface/satisfy_set.do",
+        //问股点赞
+        question_support: apiDomain + "/api/question/satisfy_set.do",
+        //笔记评论
+        note_comment: apiDomain + "/api/noteInterface/saveComment.do",
+        //查询余额
+        query_balance: apiDomain + "/api/user/queryCoin.do",
+        //问股详情
+        question_detail: apiDomain + "/api/question/detail.do",
+        //评论点赞
+        comment_agree: apiDomain + "/api/noteInterface/setAgree.do",
+        //笔记收藏
+        note_collect: apiDomain + "/api/noteInterface/collect.do",
+        //取消收藏
+        note_cancel_collect: apiDomain + "/api/noteInterface/cancel_collect.do",
+        //问股收藏
+        question_collect: apiDomain + "/api/question/collect.do",
+        //取消收藏
+        question_cancel_collect: apiDomain + "/api/question/cancel_collect.do",
+        //行情基本信息
+        market_quotation: STOCKAPI + "/stockapi/stockinfoapp.htm",
+        //分时
+        min_quotation: STOCKAPI + "/stockapi/stockminute.htm",
+        //日k
+        day_quotation: STOCKAPI + "/stockapi/stockdays.htm",
+        //周k
+        week_quotation: STOCKAPI + "/stockapi/stockweeks.htm",
+        //月k
+        month_quotation: STOCKAPI + "/stockapi/stockmonths.htm",
+        //股票涨跌幅
+        stock_updown:STOCKAPI+"/stockapi/updownlist.htm",
+        //股票搜索
+        stock_search:STOCKAPI+"/stockapi/getequinfo.htm",
+        //五档
+        stock_five:STOCKAPI+"/stockapi/stockNewData.htm",
+        //成交明细
+        stock_level1detail:STOCKAPI+"/stockapi/stocklevel1detail.htm",
+        //股票板块
+        stock_plate:STOCKAPI+"/stockapi/tradeupdownlist.htm",
+        //首页指数
+        stock_index:STOCKAPI+"/stockapi/stockindexlist.htm",
+        //首页主题按钮
+        index_set:TESTHTTP+"/api/index/set.do",
+        //首页热点
+        index_hot:TESTHTTP+"/api/index/hot.do",
+
+        stock_updown: STOCKAPI + "/stockapi/updownlist.htm",
+        index_set: TESTHTTP + "/api/index/set.do",
+        index_hot: TESTHTTP + "/api/index/hot.do",
+    },
+    url = debug ? debugUrl : onlineUrl;
+var Const = {
+    debug: debug,
+    url: url,
+    SessionKey: "SESSION_KEY",//存储sessionid的key
+    sessionExpiresKey: "SESSION_EXPIRES",//存储session过期时间的key
+    UserInfoKey: "USER_INFO",//存储用户信息的key
+
+    //笔记类型 1 笔记、2课程
+    note_type : {
+        note: 1,
+        video: 2
+    },
+    //列表类型
+    list_type : {
+        //笔记列表类型
+        //1 我关注的、 2全部数据（默认）、3我阅读的、4  大咖写的、 5我写的  7、我收藏的
+        note: {
+            MY_NOTICE: 1,
+            ALL: 2,
+            MY_READ:3,
+            DK_WRITE:4,
+            MY_WRITE:5,
+            MY_COLLECT:7
+        },
+        //问股列表类型
+        //1 我关注的、 2全部数据(默认)、3我听过的 、4我问的、5大咖回答的 、6我回答的（大咖自己）、7我收藏的
+        question: {
+            MY_NOTICE:1,
+            ALL:2,
+            MY_LISTEN:3,
+            MY_ASK:4,
+            DK_ANSWER:5,
+            MY_ANSWER:6,
+            MY_COLLECT:7
+        }
+    }
+}
+
+module.exports.const = Const;

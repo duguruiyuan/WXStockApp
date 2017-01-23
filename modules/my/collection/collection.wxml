@@ -1,0 +1,306 @@
+<!--我的收藏 -->
+<!--顶部-->
+<import src="../templates/tab.wxml"/>
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			我的收藏
+			</view>
+			<view class="weui-flex__item text_right">
+				
+			</view>
+		</view>
+</view>
+
+
+<view class="page bgfff">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <!--笔记/问股/课程-->
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="width:{{1/tabs.length*10+'em'}};left:0px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <!--笔记-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+                    <block wx:for="{{items}}" wx:key="contentid">
+
+                        <navigator url="/modules/note/detail/detail?noteid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item"></view>
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+
+                    </block>
+                </view>
+                <!--问股-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+                    <block wx:for="{{items}}" wx:key="contentid">
+
+                        <navigator url="/modules/course/detail/detail?courseid={{item.contentid}}" class="news_li container">
+                            <view class="weui-article__h2">{{item.title}}</view>
+                            <view class="news_li_foot weui-flex text_font_14 colgray">
+                                <view class="weui-flex__item"></view>
+                                <view class="weui-flex__item text_right">{{item.create_time}}</view>
+                            </view>
+                        </navigator>
+
+                    </block>
+                </view>
+                <!--课程-->
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                   <block wx:for="{{items}}" wx:key="contentid">
+                    <view bindtap="toQuestinDeatil" bind-questionid="{{item.content}}" class="news_li container">
+                        <view class="weui-article__h2">{{item.title}}</view>
+                        <view class="news_li_foot weui-flex text_font_14 colgray">
+                            <view wx:if="{{item.question_answer_flag == 0}}" class="weui-flex__item"><span class="btn_red_border box_Fillet3">未回答</span></view>
+                            <view class="weui-flex__item text_right">{{item.question_answer_flag == 0?item.question_time:item.create_time}}</view>
+                        </view>
+                    </view>
+                   </block>
+                </view>
+
+                
+
+
+            </view>
+        </view>
+    </view>
+</view>
+
+
+
+
+
+<!--<view class="page bgfff" >
+    <view class="page__bd">
+        <view class="weui-tab">
+
+            <template is="tab" data="{{tabs:tabs,sliderLeft:sliderLeft,sliderOffset:sliderOffset}}"/>
+            <view class="weui-tab__panel">
+
+                <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+                        <view class="weui-media-box">                
+                            <view class="weui-panel__bd">
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                                    <view class="weui-media-box__hd_in-appmsg img_36">
+                                        <image class="weui-media-box__thumb img_Fillet img_all" src="../../resources/images/1480572365036.jpg" ></image>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__title">张铖33<small class="colred text_font_14"> | 高级投顾</small></view>
+                                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                                    </view>
+                                </navigator>
+                                <view class="weui-article__h2"><a href="javascript:void(0)">保监会昨日会开完了，险资以后举牌可能要提前备案了，干干资金也不能轻易用了，总而胭脂保险举牌利空也告一阶段了，市场的举牌近....</a>
+                                </view>
+                            </view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人读过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                                    <view class="weui-media-box__hd_in-appmsg img_36">
+                                        <image class="weui-media-box__thumb img_Fillet img_all" src="../../resources/images/1480572365036.jpg" ></image>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__title">张铖33<small class="colred text_font_14"> | 高级投顾</small></view>
+                                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                                    </view>
+                                </navigator>
+                                <a href="javascript:void(0)">
+                                    <view class="text_font_20">我是资讯的标题我是资讯的标题</view>
+                                    <view class="weui-article__h2">保监会昨日会开完了，险资以后举牌可能要提前备案了，干干资金也不能轻易用了，总而胭脂保险举牌利空也告一阶段了，市场的举牌近....
+                                    </view>
+                                </a>
+                            </view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人读过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_bottom">
+                                    <view class="weui-media-box__hd_in-appmsg img_36">
+                                        <image class="weui-media-box__thumb img_Fillet img_all" src="../../resources/images/1480572365036.jpg" ></image>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__title">张铖33<small class="colred text_font_14"> | 高级投顾</small></view>
+                                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                                    </view>
+                                </navigator>
+                                <view class="thumbnail_div"><image src="../../resources/images/banner1.jpg" mode="widthFix"></image><image src="../../resources/images/67bfceabjw1fblhr1na9hj20j60asmxy.jpg"mode="widthFix"></image></view>
+                            </view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人读过</view>
+                                </view>
+                            </view>
+                        </view>
+
+
+
+                </view>
+
+
+
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                       <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+
+                        
+
+                       <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="weui-article__h2"><a href="javascript:void(0)">老师帮我看看看000111这支股票，成本价价11.25元元，谢谢。</a>
+                                </view>
+                                <view class="speech_div"><image src="../../resources/images/1480572365036.jpg" class="img_36 img_Fillet"mode="widthFix"></image><a href="javascript:void(0)"><image src="../../resources/images/speech_pay.png" class="speech_div_yuyin"mode="widthFix"></image><span class="text_font_12 colgray">1'32"</span> </a></view>
+                                <view class="weui-media-box__title">张铖1<small class="colred text_font_14"> | 高级投顾</small></view>
+                                </view>
+                                <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                            <view class="weui-panel__ft">
+                                <view class="weui-media-box__info">
+                                        <view class="weui-media-box__info__meta"><i class="icon iconfont icon-shizhong"></i>19:17</view>
+                                        <view class="weui-media-box__info__meta">价值99大咖币</view>
+                                        <view class="weui-media-box__info__meta">11人听过</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+        
+
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+                    <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+                  <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+                  <view class="weui-media-box">
+                            <view class="weui-panel__bd">
+                                <view class="text_font_20">我是课程的标题我是课程的标题</view>
+                                <view class="play_img"><image src="../../resources/images/paly_ico.png" class="paly_ico img_60"></image><image src="http://img2.niutuku.com/desk/1207/0855/ntk58531.jpg"mode="widthFix" class="img_big"></image></view>
+                                <navigator class="weui-media-box_appmsg weui-flex__item margin_top">
+                                    <view class="weui-media-box__hd_in-appmsg kc_p">
+                                        <image class="weui-media-box__thumb img_Fillet img_36" src="../../resources/images/1480572365036.jpg" ></image>
+                                        <view class="text_font_12">张铖</view>
+                                    </view>
+                                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                        <view class="weui-media-box__desc">当前交易策略：包括PMI、ADP、FOMC货币纪要美国失业率及非农人数、工厂订单月率前。</view>
+                                    </view>
+                                </navigator>
+                            </view>
+                            
+                            <view class="weui-panel__ft weui-flex">
+                                <view class="weui-media-box__info weui-flex__item">2017-01-03</view>
+                                <view class="weui-media-box__info weui-flex__item text_right">
+                                       <i class="icon iconfont icon-zantongfill"></i>123  <i class="icon iconfont icon-eye"></i>897观看
+                                </view>
+                            </view>
+                  </view> 
+
+                  
+                </view>
+
+
+            </view>
+        </view>
+    </view>
+</view>-->

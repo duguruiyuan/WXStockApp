@@ -1,0 +1,7 @@
+/*大咖-课程详情--------------------独立*/
+.kc_top_div {position: relative; height:150px;}
+.kc_top_div .weui-flex{ position:absolute;z-index: 2; left: 0;top: 0; color:#fff}
+.kc_top_div .weui-flex{width:100%;}
+.kc_top_div_bg { position:absolute;z-index: 1; left: 0;top: 0;width:100%;}
+.reply_box {background-color: #f7f7f7; padding:10px;}
+.hot_pl_l {padding-left:45px}

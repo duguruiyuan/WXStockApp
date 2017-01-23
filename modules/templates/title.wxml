@@ -1,0 +1,6 @@
+<!--标题 通用模板-->
+<template name="title">
+    <view class="title">
+        <text>{{title}}</text>
+    </view>
+</template>

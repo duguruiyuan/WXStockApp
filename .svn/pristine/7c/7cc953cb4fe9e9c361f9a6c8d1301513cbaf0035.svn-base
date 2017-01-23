@@ -1,0 +1,135 @@
+<!--大咖-我的关注-->
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			我的关注
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+ <view class="weui-panel__bd bgfff">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="btn_none_red_border" type="default" plain="true"size="mini">已关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                
+            </view>
+
+
+
+
+<!--大咖-我的关注-->
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			我的关注
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<view hidden="{{attention}}" class="tj_none_text text_center"> <image class="img_Fillet img_90" src="../../../resources/images/follow_no_ico.png" ></image><view class="colgray">您目前还未关注任何大咖</view></view>
+
+<view class="weui-loadmore weui-loadmore_line margin_bottom">
+     <view class="weui-loadmore__tips weui-loadmore__tips_in-line tj_none_ico"><span class="box_Fillet60"><i class="icon iconfont icon-zantongfill colred"></i></span> 推荐大咖</view>
+</view>
+
+ <view class="weui-panel__bd bgfff">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="btn_none_red_border" type="default" plain="true"size="mini">已关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                 <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src="../../../resources/images/1480572365036.jpg" class="img_60 img_Fillet"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg padding_r_80">
+                        <view class="weui-media-box__title">张铖<small class="colred text_font_14"> | 高级投顾</small></view>
+                        <view class="weui-media-box__desc">由各种物质组成的巨型球状星球</view>
+                        <view class="weui-media-box__desc">关注：888</view>
+                    </view>
+                    <view class="follow_btn"><button class="" type="warn" plain="true"size="mini">加关注</button></view>
+                </navigator>
+                
+            </view>
+

@@ -1,0 +1,86 @@
+/**
+ * Created by caojie on 2017/1/10.
+ * 微信第三方登录
+ */
+import Promise from "../resources/lib/promise.min"
+
+const _const = require("const.js").const;
+const urls = _const.url;
+
+const LoginHelper = {};
+
+//------------------从微信获取code-------------
+function getCode() {
+    return new Promise((resolve,reject)=>{
+        wx.login({
+            success:res => {
+                resolve(res.code);
+            },
+            fail:res => reject(res)
+        });
+    });
+}
+
+//---------------从微信获取用户信息----------------------
+function getUserInfo() {
+  return new Promise((resolve,reject) => {
+      wx.getUserInfo({
+          success:res => resolve(res)
+      })
+  });
+}
+
+//----------------------开始登录流程--------------------
+//-流程:从微信获取code-->获取用户信息 --> 组合参数 --> 调登录接口
+LoginHelper.login = function (){
+  const loginData = {}
+  return getCode()
+      .then(code => {
+          loginData.code = code;
+          return Promise.resolve(code);
+      }).then(res => {
+          return getUserInfo();
+      }).then(res => {
+          //加密的用户数据，需在后台解密
+          loginData.encryptedData = res.encryptedData;
+          //解密用户信息的key
+          loginData.iv = res.iv;
+          return reqLogin(loginData);
+      }).then(res=>{
+          if(+res.errcode != 0){
+              throw new Error("服务器异常");
+          }
+          //将userInfo设置进本地缓存中
+          wx.setStorage({key:_const.UserInfoKey,data:res.data.user});
+          let sessionKey = res.data.sessionKey;
+          //将sessionid 保存到本地缓存
+          if(sessionKey){
+              wx.getStorageSync(_const.SessionKey) != sessionKey &&
+              wx.setStorageSync(_const.SessionKey,sessionKey);
+          }
+          //请求成功，更新session过期时间,过期时间12小时
+          wx.setStorageSync(_const.sessionExpiresKey,Date.now()+12*60*60*1000);
+          return Promise.resolve(res.data.user);
+      }).catch(ex => {
+          console.error(`#####警告:登录失败：${ex}`);
+      });
+
+}
+
+function reqLogin(data){
+    return new Promise((resolve,reject) => {
+        wx.request({
+            url:urls.login,
+            method:"POST",
+            data:data,
+            header:{'content-type':'application/x-www-form-urlencoded'},
+            success:res=> resolve(res.data),
+            fail:res=>reject(res)
+        });
+    })
+}
+
+
+module.exports.loginHelper = LoginHelper;
+
+

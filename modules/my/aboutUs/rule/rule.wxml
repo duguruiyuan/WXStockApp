@@ -1,0 +1,145 @@
+<!--modules/my/aboutUs/rule/rule.wxml-->
+<view class="bgfff container padding_top padding_bottom text_font_14">
+<view class="weui-article__h3">
+一、发布原则 
+</view>
+<view class="weui-article__p">鉴于，管理团队希望确保平台合法合规及内容健康，成为我国共享知识经济模式的健康平台。 
+因此，无论是个人提问，或是回答，双方均需确保提交的内容符合国家法律规定，以及符合大咖问股发布的用户协议及提问规则。提问者和答主必须对自己所发表的内容负责，并承当相应的法律责任。 大咖问股保留随时移除任何不当内容和进行处罚的权利。</view> 
+<view class="weui-article__p">特此发布如下详细规则，望各位用户仔细阅读并理解，本着诚实守信的原则，以资信守。</view> 
+<view class="weui-article__h3">
+二、个人信息设置规则 
+
+</view> 
+<view class="weui-article__p">大咖问股用户拥有自行设置个性化帐号信息的权利，包括：昵称、头像、个人简介、问答价格等，但不得设置含有以下内容的账号信息，用户亦不得使用影射、暗示、诱导、隐晦表达等其他方式规避以下限制：
+</view> 
+<view class="weui-article__p">
+（一）涉及和/或关联政治、色情、宗教等各类敏感词汇；
+</view> 
+<view class="weui-article__p">
+（二）涉及和/或关联针对第三人具有人身攻击性质等内容信息及语言表达；
+</view> 
+<view class="weui-article__p">
+（三）包含明显代购、代购渠道、代购价格、代购品牌及代购人联系方式等营销词汇；
+</view> 
+<view class="weui-article__p">
+（四）涉及冒充、伪造、利用他人身份信息及社会身份等情况；
+</view> 
+<view class="weui-article__p">
+（五）包含其他违反国家法律法规及社会伦理道德风俗的非法信息及不良信息。
+</view> 
+
+<view class="weui-article__h3">
+三、发布规则 </view>
+
+<view class="weui-article__p">
+大咖问股用户在国家法律规制范围内拥有发布信息的权利，但不得发布含有以下内容的信息：
+</view> 
+<view class="weui-article__p"> 
+1. 含有反动内容</view> 
+<view class="weui-article__p">
+1）肆意评价国家现行制度；
+</view> 
+<view class="weui-article__p">
+2）发布内容涉及或可能设计破坏社会公共秩序；
+</view> 
+<view class="weui-article__p">3）挑起民族、种族、宗教、地域等争端；
+</view> 
+<view class="weui-article__p">
+4）宣传迷信活动和邪教组织；</view> 
+<view class="weui-article__p">
+5）煽动他人进行非法集会、结社、游行、示威、聚众扰乱社会秩序的；
+</view> 
+<view class="weui-article__p">
+6）危害国家统一、主权独立和领土完整的；
+</view> 
+<view class="weui-article__p">
+7）泄露国家秘密、危害国家安全或者损害国家荣誉和利益的；
+</view> 
+<view class="weui-article__p">
+8）散布不实谣言，扰乱社会秩序，破坏社会稳定的； 
+</view> 
+<view class="weui-article__p">
+2. 含有色情、暴力、恐怖内容
+
+</view> 
+<view class="weui-article__p">1）提问中涉及描写和/或传播性器官及性行为等色情内容；
+</view> 
+<view class="weui-article__p">2）提问中引诱他人进行线下见面谋求发生性关系或卖淫等行为；
+</view> 
+<view class="weui-article__p">3）引诱、唆使、诱导他人从事暴力活动； 以及
+</view> 
+<view class="weui-article__p">4）存在恐吓、威胁他人的描述。 
+</view> 
+<view class="weui-article__p">3. 具有广告性质
+</view> 
+<view class="weui-article__p">1）含有未经平台许可的广告宣传描述；
+</view> 
+<view class="weui-article__p">2）涉及任何物品（包括虚拟物品，如虚拟货币等）的交易；
+</view> 
+<view class="weui-article__p">3）涉及宣传、鼓动、引诱他人及发展非法传销活动等信息；以及
+</view> 
+<view class="weui-article__p">4）公开问题提问中涉及手机、电话、微信号等联系方式描述。 
+</view> 
+<view class="weui-article__p">4. 含有人身攻击内容
+</view> 
+<view class="weui-article__p">1）含有侮辱、诽谤他人，散布虚假信息等信息；
+</view> 
+<view class="weui-article__p">2）侵犯他人肖像权、隐私权等其他合法权益；
+</view> 
+<view class="weui-article__p">3）用粗言秽语侮辱他人，造成身心伤害；
+</view> 
+<view class="weui-article__p">4）侵犯他人及社会组织、机构名誉权或商誉的行为；
+</view> 
+<view class="weui-article__p">5）侵犯他人生活安宁权，不得利用大咖问股平台骚扰他人生活。不应以提问方式对他人反复发送重复、近似、诉求相同的信息。 
+</view> 
+<view class="weui-article__p">5. 含有违背伦理道德内容
+</view> 
+<view class="weui-article__p">1）包含违反社会公共道德及伦理的内容信息；
+</view> 
+<view class="weui-article__p">2）劝诱自杀，描写自杀方法和过程的信息；
+</view> 
+<view class="weui-article__p">3）歧视和贬低弱势群体，如残疾、老龄和经济状况较差等情况；
+</view> 
+<view class="weui-article__p">4）教授侵犯他人权益的方法，如黑客、诈骗等手法；
+</view> 
+<view class="weui-article__p">5）包含其他可能导致他人；
+</view> 
+<view class="weui-article__p">6）涉及命理、地下足彩等非法行为的。 
+</view> 
+<view class="weui-article__p">6. 具有恶意、无聊和灌水性质
+</view> 
+<view class="weui-article__p">1）出现提供电话号码及其他个人联系方式的提问和回答；
+</view> 
+<view class="weui-article__p">2）具有聊天、寻人、征友、征婚等特点的提问；
+</view> 
+<view class="weui-article__p">3）标题和补充中提供的信息不足以构成一个问题的提问； 
+</view> 
+<view class="weui-article__p">4）短时间内大量重复向同一人提问或者同一问题短时间内向多人提问。 
+</view> 
+<view class="weui-article__p">7. 涉及违法犯罪的内容
+</view> 
+<view class="weui-article__p">1）宣扬刑事犯罪，并描述犯罪方法及过程的；
+</view> 
+<view class="weui-article__p">2）组织、引诱或召集聚众赌博；
+</view> 
+<view class="weui-article__p">3）涉及地下足彩、赌球等非法行为的；以及
+</view> 
+<view class="weui-article__p">4）行骗欺诈。 
+</view> 
+<view class="weui-article__p">8. 其他法律、行政法规和国家规定禁止的内容。 
+
+</view> 
+<view class="weui-article__h3">四、违规处理 
+
+</view> 
+<view class="weui-article__p">如大咖问股用户违反上述社区内容发布规则，大咖问股有权在不告知情况下，对违规内容及帐号开展处罚及处理工作。 
+针对违规内容，大咖问股将保有删除相关问题的权利。 
+</view> 
+<view class="weui-article__p">针对发布违规内容的账户，大咖问股保有如下权利：限制该帐号进行搜索、禁止该帐号在平台提问、禁止该帐号回答提问者的问题，直至注销该帐号。 
+
+</view> 
+<view class="weui-article__h3">五. 最终解释权及更新权 
+
+</view> 
+<view class="weui-article__p">大咖问股对上述社区发布规则保有最终解释权及更新权。上述规则更新后，以更新后规则为准。</view> 
+</view>

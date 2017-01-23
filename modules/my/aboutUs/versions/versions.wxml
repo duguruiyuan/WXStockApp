@@ -1,0 +1,17 @@
+<!--modules/my/aboutUs/versions/versions.wxml-->
+<view class="text_center" style="padding:50px 0;"><image class="img_90 img_Fillet" src="../../../../resources/images/logo.png"></image></view>
+<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">应用名称</view>
+                <view class="weui-cell__ft">大咖问股</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">当前版本</view>
+                <view class="weui-cell__ft">V2.0</view>
+            </view>
+            <view class="weui-cell">
+                <view class="weui-cell__bd">检查新版本</view>
+                <view class="weui-cell__ft">已是最新版本</view>
+            </view>
+</view>
+                                                                                          

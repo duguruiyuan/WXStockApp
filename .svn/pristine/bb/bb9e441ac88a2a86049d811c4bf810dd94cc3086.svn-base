@@ -1,0 +1,51 @@
+/**
+ * Created by caojie on 2017/1/14.
+ * 笔记详情
+ */
+const path = "../../../common/";
+const {noticeHelper,payHelper} = require(path+"handle").handlers;
+const http = require(path+"http.js").http;
+const urls = require(path+"const").const.url;
+const {commentList} =  require(path+"data.js").dataHepler;
+let page = {
+    data: {
+        "noteid": 205,//id
+        "note": {},//详情
+        "commentList": [],//评论列表
+        "showSupport": false//是否显示点赞按钮
+    },
+    getNoteDetail: function (noteid) {
+        http.get(urls.note_detail, {noteid: noteid}).then(data=>this.setData({"note": data}));
+    },
+    getNoteComment: function (noteid=this.data.noteid) {
+        this.commentList = this.commentList || new commentList(noteid);
+        this.commentList.nextPage(data => this.setData({"commentList": data}));
+    },
+    onLoad: function (option) {
+        //this.data.noteid = option.query;
+        //this.getNoteDetail(option.query);
+        this.notePay(5);
+    },
+    //-------付费-------
+    notePay: function (total_fee) {
+        payHelper.pay(`${urls.note_pay}?noteid=${this.data.noteid}`, total_fee, data=> {
+            console.log("支付成功");
+        });
+    },
+    //--------点赞-------
+    support: function () {
+        http.get(url.note_support, {noteid: noteid}).then(()=> {
+            this.setData({showSupport: false});
+        });
+    },
+    //---------提交评论-----
+    submitComment: function () {
+
+    },
+    //-------加载更多-------
+    refresh: ()=>this.getNoteComment()
+}
+
+
+
+Page(page);

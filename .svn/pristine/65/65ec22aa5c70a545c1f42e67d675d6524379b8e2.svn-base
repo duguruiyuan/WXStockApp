@@ -1,0 +1,23 @@
+/**
+ * Created by cj on 2017/1/14.
+ * 问股详情
+ */
+const path = "../../../common/";
+const {noticeHelper, payHelper} = require(path + "handle").handlers;
+const http = require(path + "http.js").http;
+const urls = require(path + "const").const.url;
+let page = {
+    data: {
+        "questionid": null,
+        "question": {},
+    },
+    getQuestionDetail: function (questionid = this.data.questionid) {
+        http.get(urls.question_detail, {questionid: questionid}).then(data=> {
+            this.setData({question: data});
+        });
+    },
+    onLoad: function (option) {
+        this.data.questionid = option.questionid;
+        this.getQuestionDetail();
+    }
+}

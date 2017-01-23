@@ -1,0 +1,25 @@
+.my-swiper image{
+  width: 100%;
+  height:130px;
+}
+
+.nav-top{
+	border-top: 1px solid #F2F2F2;
+	padding: 5px auto;
+	background: #fff;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.wrap-item{
+	margin: 10px auto;
+	display: inline-block;
+	text-align: center;
+}
+
+.img-nav{
+    width: 2.5rem;
+    height: 2.5rem;
+}
+

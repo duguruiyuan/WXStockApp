@@ -1,0 +1,26 @@
+{
+
+    "customerInfo": {
+        "customerid": "3435",
+        "is_dk": "1",
+        "is_vip": "1",
+        "vip_grade": "7",
+        "tourist_grade": "1",
+        "money": "588"
+    },
+
+"userInfo": {},
+	"x_menus":{
+	         "title":"我的关注",
+	         "title":"我的收藏",
+	         "title":"我的足迹"
+  },
+	"y_menus":[
+	         {"title":"消费记录","onclick":"payExpense","icon":"images/payExpense.png"},
+	         {"title":"我的消息","onclick":"myNew","icon":"images/myNews.png"},
+	         {"title":"我的分享","onclick":"myShare","icon":"images/myShare.png"},
+	         {"title":"关于大咖问股","onclick":"aboutUs","icon":"images/aboutUs.png"},
+           {"title":"使用手册","onclick":"handBook","icon":"images/handBook.png"},
+           {"title":"系统设置","onclick":"setup","icon":"images/setup.png"}
+    ]
+}

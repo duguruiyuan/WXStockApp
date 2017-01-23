@@ -1,0 +1,30 @@
+/**
+ * Created by caojie on 2017/1/13.
+ * 大咖首页
+ */
+const app = getApp();
+const {bignameList,recommendData} =  require("../../common/data").dataHepler;
+//大咖顶部推荐位置
+const POSITION_ID_TOP = 1;
+const page = {
+    data:{
+        "recList":[],//推荐大咖
+        "allList":[]//所有大咖
+    },
+    //========获取推荐数据========
+    getRecList:function () {
+        this.recData = this.recData || new recommendData(POSITION_ID_TOP);
+        this.recData.nextPage(data => this.setData({"recList":data}));
+    },
+    //========获取所有大咖列表=====
+    getAllList:function () {
+        this.bignameList = this.bignameList || new bignameList();
+        this.bignameList.nextPage(data => this.setData({"allList":data}));
+    },
+    onLoad:function () {
+        this.getRecList();
+        this.getAllList();
+    }
+}
+
+Page(page);

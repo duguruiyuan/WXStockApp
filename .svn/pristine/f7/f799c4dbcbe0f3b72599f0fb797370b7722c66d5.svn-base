@@ -1,0 +1,181 @@
+<!--顶部-->
+<view class="header">
+    <view class="weui-flex container">
+        <view class="weui-flex__item">
+            <navigator url="{{myHome}}">
+                <i class="icon iconfont icon-gerenzhongxin text_font_24"></i>
+            </navigator>
+        </view>
+        <view class="weui-flex__item text_center">
+            大咖问股
+        </view>
+        <view class="weui-flex__item text_right">
+            <i class="icon iconfont icon-llhomesearch text_font_24"></i>
+        </view>
+    </view>
+</view>
+
+        <!-- 大按钮 -->
+<view class="weui-flex box_color entryway_box">
+<block wx:for="{{bigButton}}" wx:key="title">
+    <navigator class="weui-media-box_appmsg weui-flex__item box_border_r"
+               url="{{index == 0 ? '/modules/bigname/index/index' : '/modules/bigname/hot/hot'}}"
+               open-type="{{index == 0 ?'switchTab':'navigate'}}">
+        <view class="weui-media-box__hd_in-appmsg img_45">
+            <image class="weui-media-box__thumb img_45" src="{{item.icon}}"></image>
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item.title}}</view>
+            <view class="weui-media-box__desc">{{item.profile}}</view>
+        </view>
+    </navigator>
+</block>
+</view>
+
+        <!-- 首页按钮-->
+<view class="box_color i_nav">
+<block wx:for="{{buttons}}" wx:key="title">
+    <navigator class="i_nav_li" url="{{item.action}}" open-type="{{item.openType}}">
+        <image src="{{item.icon}}" class="img_45"></image>
+        <text>{{item.title}}</text>
+    </navigator>
+</block>
+</view>
+
+        <!-- 广告banner -->
+<view class="i_banner box_color">
+<swiper autoplay="true" interval="5000" circular="true">
+    <block wx:for="{{ads}}" wx:key="title">
+        <swiper-item>
+            <image src="{{item.icon}}" mode="widthFix" class="image_big"/>
+        </swiper-item>
+    </block>
+</swiper>
+</view>
+<view class="weui-panel weui-panel_access">
+<view class="weui-panel__hd">热门话题</view>
+<view class="weui-panel__bd container">
+
+    <!-- 热门两条 -->
+    <view class="i_hot_topic padding_top">
+        <block wx:for="{{hotOneItem}}" wx:key="title">
+            <navigator url="{{item.action}}" open-type="{{item.openType}}">
+                <view class="weui-media-box__title_in-text text_font_18 clamp_1">{{item.title}}</view>
+                <view class="weui-media-box__desc text_font_16 clamp_2" wx:if="{{item.profile != null}}">
+                    {{item.profile}}
+                </view>
+            </navigator>
+        </block>
+    </view>
+
+    <!-- 热点其他 -->
+    <view class="hot_topic_li weui-flex flex_flow">
+        <block wx:for="{{hotTwoItem}}" wx:key="title">
+            <navigator url="{{item.action}}" open-type="{{item.openType}}">
+                <view class="clamp_1">
+                    <image class="img_18 icon" src="{{item.icon}}"></image>
+                    {{item.title}}
+                </view>
+            </navigator>
+        </block>
+    </view>
+</view>
+</view>
+<view class="weui-panel weui-panel_access">
+<view class="weui-panel__hd">精彩推荐</view>
+<view>
+    <block wx:for="{{recommend}}" wx:key="user_title">
+        <view class="weui-media-box">
+            <!-- 策略 -->
+            <view class="wengu_ico img_45" wx:if="{{item.hotcontents[0].content_type =='1'}}">
+                <image class="img_all" src="../../resources/images/i_celue_ico.png"></image>
+            </view>
+
+            <!-- 课程 -->
+            <view class="wengu_ico img_45" wx:if="{{item.hotcontents[0].content_type =='2'}}">
+                <image class="img_all" src="../../resources/images/i_kecheng_ico.png"></image>
+            </view>
+
+            <!-- 问股 -->
+            <view class="wengu_ico img_45" wx:if="{{item.hotcontents[0].content_type =='3'}}">
+                <image class="img_all" src="../../resources/images/i_wengu_ico.png"></image>
+            </view>
+
+            <!-- 笔记 -->
+            <view class="wengu_ico img_45" wx:if="{{item.hotcontents[0].content_type =='4'}}">
+                <image class="img_all" src="../../resources/images/i_zixun_ico.png"></image>
+            </view>
+            <view class="weui-panel__bd">
+                <navigator class="weui-media-box_appmsg weui-flex__item margin_bottom"
+                           url="/modules/bigname/detail/detail?userid={{item.userid}}">
+                    <view class="weui-media-box__hd_in-appmsg img_36">
+                        <image class="weui-media-box__thumb img_Fillet img_all" src="{{item.user_ico}}"></image>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">{{item.user_name}}
+                            <small class="colred text_font_14">| {{item.user_title}}</small>
+                        </view>
+                        <view class="weui-media-box__desc">{{item.user_profiles}}</view>
+                    </view>
+                </navigator>
+
+                <!--策略-->
+                <block wx:if="{{item.hotcontents[0].content_type == '1'}}">
+                    <navigator url="/modules/note/detail/detail?noteid={{item.hotcontents[0].contentid}}">
+                        <view class="text_font_20">{{item.hotcontents[0].title}}</view>
+                    </navigator>
+                    <view class="weui-flex flex_flow" wx:if="{{item.hotcontents[0].noteImgs != null}}">
+                        <block wx:for="{{item.hotcontents[0].noteImgs}}" wx:key="id" wx:for-item="imageItem">
+                            <view class="thumbnail_div_image">
+                                <image src="{{imageItem.img_url}}" mode="scaleToFill"></image>
+                            </view>
+                        </block>
+                    </view>
+                </block>
+
+                <!--课程-->
+                <block wx:if="{{item.hotcontents[0].content_type == '2'}}">
+                    <navigator url="/modules/course/detail/detail?userid={{item.userid}}">
+                        <view class="text_font_20">{{item.hotcontents[0].title}}</view>
+                    </navigator>
+                </block>
+
+                <!--资讯-->
+                <block wx:if="{{item.hotcontents[0].content_type == '3'}}">
+                    <navigator  url="/modules/note/detail/detail?noteid={{item.hotcontents[0].contentid}}">
+                        <view class="text_font_18">{{item.hotcontents[0].title}}</view>
+                        <view class="weui-article__h2">{{item.hotcontents[0].summry}}</view>
+                    </navigator>
+                </block>
+
+                <!--问股-->
+                <block wx:if="{{item.hotcontents[0].content_type == '4'}}">
+                    <navigator url="/modules/question/detail/detail?questionid={{item.hotcontents[0].questioner_id}}">
+                        <view class="speech_div">
+                            <view class="weui-article__h2">{{item.hotcontents[0].title}}</view>
+                            <image src="../../resources/images/speech_pay.png" class="speech_div_yuyin" mode="widthFix">
+                                {{item.hotcontents[0].audio_txt}}
+                            </image>
+                            <span class="text_font_12 colgray">{{item.hotcontents[0].audio_length}}"</span>
+                        </view>
+                    </navigator>
+                </block>
+            </view>
+            <view class="weui-panel__ft">
+                <view class="weui-media-box__info">
+                    <view class="weui-media-box__info__meta">
+                        <i class="icon iconfont icon-shizhong"></i>{{item.hotcontents[0].create_time}}
+                    </view>
+                    <view class="weui-media-box__info__meta">价值{{item.hotcontents[0].value}}大咖币</view>
+                    <view class="weui-media-box__info__meta">{{item.hotcontents[0].readnum}}人听过</view>
+                </view>
+            </view>
+        </view>
+    </block>
+</view>
+</view>
+
+        <!--浮动通知-->
+<a href="#" class="img_Fillet i_news ">
+<i class="icon iconfont icon-xiaoxi text_font_18"></i>
+</a> 

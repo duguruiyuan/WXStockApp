@@ -1,0 +1,23 @@
+<!--我要分享-->
+<!--顶部-->
+<view class="header">
+		<view class="weui-flex container">
+    	    <view class="weui-flex__item">
+                <i class="icon iconfont icon-left text_font_24"></i>
+            </view>
+			<view class="weui-flex__item text_center">
+			APP分享
+			</view>
+			<view class="weui-flex__item text_right">
+			</view>
+		</view>
+</view>
+
+<view class="text_center container">
+	<view class="app_share">
+		<image class="img_120" src="../../../resources/images/dk_code.jpg"></image>
+		<view class="text_font_14"><text>扫描二维码  下载大咖问股APP</text></view>
+		<view class="text_font_16">提前洞察潜力牛股，打造你的操盘神器</view>
+	</view>
+    <button class="weui-btn mini-btn" type="warn">分享</button>
+</view>

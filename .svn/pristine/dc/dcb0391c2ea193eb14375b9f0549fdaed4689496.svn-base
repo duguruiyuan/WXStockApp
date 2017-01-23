@@ -1,0 +1,11 @@
+<!--modules/my/myself/answer_price.wxml-->
+<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input type="number" class="weui-input" placeholder="请输入数字"  bindinput="listenerNumInput"/>
+                </view>
+            </view>
+</view>
+<view class="weui-btn-area margin_top padding_top">
+            <button class="weui-btn" type="warn" bindtap="updatePrice">确定</button>
+</view>

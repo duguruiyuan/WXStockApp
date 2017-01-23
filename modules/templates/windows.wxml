@@ -1,0 +1,77 @@
+<template name="askQuestion">
+<!--评论弹窗-->
+    <view  style="display: {{display  || 'none'}};">
+       <view class="weui-mask" style="display:{{display || 'none'}}"></view>
+          <view class="foot_dialog bgfff">
+               <view class="weui-cells__title weui-flex">
+                <view class="weui-flex__item colred">{{user.answer_price}}大咖币向他提问</view>
+                    <view bindtap="hide">取消</view>
+                </view>
+                  <view class="weui-cells weui-cells_after-title">
+                     <view class="weui-cell">
+                          <view class="weui-cell__bd">
+                                <textarea value="{{content}}" maxlength="{{maxLength}}"  auto-focus="true" bindinput="input"
+                                class="weui-textarea" placeholder="输入您的问题，回答被其他人收听后，您将于{{user.user_name}}平分偷听收入。如果{{user.user_name}}超过72小时未解答，提问费用回自动退回。" style="height: 4.5em" />
+                                <view class="weui-textarea-counter">{{len || 0}}/{{maxLength}}</view>
+                          </view>
+                     </view>
+               </view>
+                  <view class="weui-btn-area text_right">
+                        <button class="weui-btn"
+                        data-answer_price="{{user.answer_price}}" data-answer_id="{{user.userid}}" type="warn" bindtap="send" size="mini">发送</button>
+                  </view>
+       </view>
+    </view>
+</template>
+
+<template name="alert">
+    <!--alert 弹窗-->
+    <view style="display:{{param.display || 'none'}}">
+                <view class="weui-mask"></view>
+                <view class="weui-dialog bgfff padding_bottom">
+                    <view class="weui-dialog__hd"><strong class="weui-dialog__title"><i class="icon iconfont {{param.icon}} text_font_36 colred"></i> </strong><view>{{param.content}}</view></view>
+        </view>
+    </view>
+</template>
+
+<template name="confirm">
+    <!--确认弹窗-->
+    <view style="display:{{param.display || 'none'}};">
+                <view class="weui-mask"></view>
+                <view class="weui-dialog bgfff">
+                    <view class="weui-dialog__hd"><strong class="weui-dialog__title">{{param.content}}</strong></view>
+                    <view class="weui-dialog__ft">
+                        <button  bindtap="pressOk" class="weui-dialog__btn box_border_r">确定</button>
+                        <button  bindtap="pressCancel" class="weui-dialog__btn box_border_r weui-dialog__btn_default">取消</button>
+                    </view>
+                </view>
+    </view>
+</template>
+
+<template name="share">
+    <!--分享-->
+<view style="opacity: 0;">
+            <view class="weui-mask"></view>
+            <view class="foot_dialog bgfff">
+                <view class="weui-flex text_center padding_10_15">
+                    <view class="weui-flex__item">
+                        <image class="img_45" src="../../resources/images/share_wx_ico.png"></image>
+                        <view class="text_font_14">微信好友</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <image class="img_45" src="../../resources/images/share_pyq_ico.png"></image>
+                        <view class="text_font_14">朋友圈</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <image class="img_45" src="../../resources/images/share_qq_ico.png"></image>
+                        <view class="text_font_14">QQ好友</view>
+                    </view>
+                    <view class="weui-flex__item">
+                        <image class="img_45" src="../../resources/images/share_wb_ico.png"></image>
+                        <view class="text_font_14">新浪微博</view>
+                    </view>
+                </view>
+            </view>
+</view>
+</template>
+

@@ -1,0 +1,125 @@
+
+<!--引入模板-->
+<import src="../templates/class_card.wxml"/>
+<scroll-view scroll-y="true" class="container" lower-threshold="20" style="height: {{winHeight}};" bindscrolltolower="refresh">
+    <view class="my-swiper" >
+      <!--顶部推荐位-->
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for="{{topicList}}" wx:key="">
+              <swiper-item>
+                  <image src="{{item.theme_pic_url}}" class="slide-image" data-topicurl="{{item.theme_url}}" bindtap="toTopic"/>
+              </swiper-item>
+          </block>
+      </swiper>
+    </view>
+
+      <!-- 分类导航 -->
+    <view class="nav-top">
+        <view class="wrap-item">
+          <image src="../../resources/images/bj_ico.png" class="img-nav" data-url="../note/index" bindtap="switchTab"></image>
+          <navigator url="../note/index" hover-class="navigator-hover">笔记</navigator>
+        </view>
+        <view class="wrap-item">
+          <image src="../../resources/images/wg_ico.png" class="img-nav" data-url="../question/index" bindtap="switchTab"></image>
+          <navigator url="../question/index" hover-class="navigator-hover">问股</navigator>
+        </view>
+        <view class="wrap-item">
+          <image src="../../resources/images/kc_ico.png" class="img-nav" data-url="../class/index" bindtap="switchTab"></image>
+          <navigator url="../class/index" hover-class="navigator-hover">课程</navigator>
+        </view>
+        <view class="wrap-item">
+          <image src="../../resources/images/live_ico.png" class="img-nav" data-url="../live/index" bindtap="switchTab"></image>
+          <navigator url="../live/index" hover-class="navigator-hover">决策</navigator>
+        </view>
+    </view>
+
+    <!--灰色间隔-->
+    <view class="sep-field"></view>
+
+    <!--精选笔记开始-->
+    <view class="wrap-header text-content">
+      <view class="header-item">
+          <image class="ico ico-16" src="/resources/images/box_t_ico_jx.png"></image>
+          <view class="display-inline-block">精选笔记</view>
+      </view>
+      <image class="ico"style="height:7px;width:16px;" src="/resources/images/more_ico.png"></image>
+    </view>
+
+
+    <view class="wrap-content" wx:for="{{noteList}}" wx:key="">
+      <view class="content-top">
+        <image class="img45 fl margin-top-middle" src="{{item.author_ico}}"></image>
+        
+        <view class="rightside-2">
+          <span class="text-content">{{item.note_author_name}}</span>
+          <span class="red-circle"> {{item.user_title || '股市牛散'}}</span>
+          <view class="text-small">{{item.author_profiles}}</view>
+        </view>
+      </view>
+
+      <view>
+         <span class="red-circle">{{item.note_type == 1?'策略':'资讯'}}</span>
+        {{item.note_summry  ||  item.free_note_content}}
+      </view>
+
+      <view>
+        <image src="/resources/images/time_fb_f.png" class="ico ico-16"></image>
+        <span class="text-middle">
+          {{item.note_time}},{{item.reader_nums}}读过,{{item.satisfied_nums}}觉得超值
+        </span>
+      </view>
+      
+    </view>
+   
+
+    <!--热门问股-->
+    <view class="wrap-header text-content">
+      <view class="header-item">
+          <image class="ico ico-16" src="/resources/images/box_t_ico_wg.png"></image>
+          <view class="display-inline-block">热门问股</view>
+      </view>
+      <image class="ico"style="height:7px;width:16px;" src="/resources/images/more_ico.png"></image>
+    </view>
+
+    <view class="wrap-content" wx:for="{{questionList}}" wx:key="">
+      <view> {{item.question_content}} </view>
+
+      <view class="content-top">
+        <image class="img45 fl margin-top-middle" src="http://img2.imgtn.bdimg.com/it/u=4283224762,2640682880&fm=23&gp=0.jpg"></image>
+        
+        <view class="rightside">
+          <view class="text-middle" >{{item.answer_username}} | {{item.user_title ||'股市牛散'}}</view>
+          <image class="img hot-ask-img" style="" src="/resources/images/hot_ask_one_dk.png"></image>
+          <span class="text-content">{{item.question_answer_length}}″</span>
+        </view>
+
+      </view>
+
+      <view>
+          <image src="/resources/images/time_fb_f.png" class="ico ico-16"></image>
+          <span class="text-middle">
+            {{item.question_time}},{{item.reader_nums}}读过,{{item.satisfied_nums}}觉得超值
+          </span>
+      </view>
+      
+    </view>
+
+   
+    <!--精选课程-->
+    <view class="wrap-header text-content">
+      <view class="header-item">
+          <image class="ico ico-16" src="/resources/images/box_t_ico_kc.png"></image>
+          <view class="display-inline-block">精选课程</view>
+      </view>
+      <image class="ico"style="height:7px;width:16px;" src="/resources/images/more_ico.png"></image>
+    </view>
+
+    
+    <!--精选课程内容 -->
+    <block wx:for="{{courseList}}" wx:key="">
+      <template is="class_card" data="{{item}}"></template>
+    </block>
+
+  </scroll-view>
+
+

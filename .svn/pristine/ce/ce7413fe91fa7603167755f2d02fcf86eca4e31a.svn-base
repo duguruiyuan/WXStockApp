@@ -1,0 +1,27 @@
+// modules/my/attention/attention.js
+Page({
+  data:{ 
+    "attention":[],//我的关注
+    "recData":[],//推荐大咖
+     //"allList":[],//所有大咖
+     "hasMore":true,//是否还有更多数据
+  },
+  onLoad:function(options){
+    // 页面初始化 options为页面跳转所带来的参数
+    //获取我关注的大咖列表
+
+    //获取推荐大咖列表
+  },
+  onReady:function(){
+    // 页面渲染完成
+  },
+  onShow:function(){
+    // 页面显示
+  },
+  onHide:function(){
+    // 页面隐藏
+  },
+  onUnload:function(){
+    // 页面关闭
+  }
+})

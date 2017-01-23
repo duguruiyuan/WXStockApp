@@ -1,0 +1,112 @@
+<!--顶部-->
+<view class="header">
+    <view class="weui-flex container">
+        <view class="weui-flex__item">
+            <i class="icon iconfont icon-left text_font_24"></i>
+        </view>
+        <view class="weui-flex__item text_center position_re">
+            <view class="weui-flex box_Fillet3">
+                <view class="weui-flex__item active">我的自选</view>
+            </view>
+        </view>
+        <view class="weui-flex__item text_right">
+            <navigator>完成</navigator>
+        </view>
+    </view>
+</view>
+
+<view class="all_table_box">
+    <view class="all_table text_font_14">
+           <view class="all_table_li" style="width:55%">个股名称</view>
+           <view class="all_table_li"style="width:15%">置顶</view>
+           <view class="all_table_li text_center"style="width:15%">上移</view>
+           <view class="all_table_li text_right"style="width:15%">下移</view>
+     </view>
+</view>
+<view class="all_table_box bgfff">
+       <navigator class="all_table">
+              <view class="all_table_li"style="width:55%">
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="weui-cell weui-check__label padding_none">
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23"></icon>
+                            </view>
+                            <view class="weui-cell__bd">天猫股份
+                            <view class="text_font_14 colgray">6222222</view></view>
+                        </label>
+                    </checkbox-group>
+    
+              </view>
+              <view class="all_table_li"style="width:15%"><i class="icon iconfont icon-iconfontxinzhidingtubiaoeps text_font_24"></i></view>
+              <view class="all_table_li text_center"style="width:15%"><i class="icon iconfont icon-shang text_font_24"></i></view>
+              <view class="all_table_li text_right"style="width:15%"><i class="icon iconfont icon-shang-copy-copy text_font_24"></i></view>
+        </navigator>
+</view>
+
+<view class="all_table_box bgfff">
+       <navigator class="all_table">
+              <view class="all_table_li"style="width:55%">
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="weui-cell weui-check__label padding_none">
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23"></icon>
+                            </view>
+                            <view class="weui-cell__bd">天猫股份
+                            <view class="text_font_14 colgray">6222222</view></view>
+                        </label>
+                    </checkbox-group>
+    
+              </view>
+              <view class="all_table_li"style="width:15%"><i class="icon iconfont icon-iconfontxinzhidingtubiaoeps text_font_24"></i></view>
+              <view class="all_table_li text_center"style="width:15%"><i class="icon iconfont icon-shang text_font_24"></i></view>
+              <view class="all_table_li text_right"style="width:15%"><i class="icon iconfont icon-shang-copy-copy text_font_24"></i></view>
+        </navigator>
+</view>
+
+
+<view class="all_table_box bgfff">
+       <navigator class="all_table">
+              <view class="all_table_li"style="width:55%">
+                    <checkbox-group bindchange="checkboxChange">
+                        <label class="weui-cell weui-check__label padding_none">
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23"></icon>
+                            </view>
+                            <view class="weui-cell__bd">天猫股份
+                            <view class="text_font_14 colgray">6222222</view></view>
+                        </label>
+                    </checkbox-group>
+    
+              </view>
+              <view class="all_table_li"style="width:15%"><i class="icon iconfont icon-iconfontxinzhidingtubiaoeps text_font_24"></i></view>
+              <view class="all_table_li text_center"style="width:15%"><i class="icon iconfont icon-shang text_font_24"></i></view>
+              <view class="all_table_li text_right"style="width:15%"><i class="icon iconfont icon-shang-copy-copy text_font_24"></i></view>
+        </navigator>
+</view>
+
+
+<view class="text_center margin_top">
+    <navigator class="text_font_14" hover-class="none">+ 点击添加自选</navigator>
+</view>
+
+<view class="weui-flex container bgfff">
+    <view class="weui-flex__item">
+        <checkbox-group bindchange="checkboxChange">
+                   
+                        <label class="weui-cell weui-check__label padding_none">
+                            <checkbox class="weui-check"/>
+                            <view class="weui-cell__hd weui-check__hd_in-checkbox">
+                                <icon class="weui-icon-checkbox_circle" type="circle" size="23"></icon>
+                                <icon class="weui-icon-checkbox_success" type="success" size="23"></icon>
+                            </view>
+                            <view class="weui-cell__bd">全选</view>
+                        </label>
+          </checkbox-group>
+    </view>
+    <view class="weui-flex__item text_right">删除</view>
+</view>
+
+

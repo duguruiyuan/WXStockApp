@@ -1,0 +1,351 @@
+<import src="../kline/kline.wxml"/>
+        <!--顶部-->
+<view class="header">
+<view class="weui-flex container">
+    <view class="weui-flex__item text_font_14">
+        <i class="icon iconfont icon-left text_font_24"></i>
+    </view>
+    <view class="weui-flex__item text_center hq_title_font">
+        <view class="text_font_18">{{goodsName}}
+            <view class="text_font_14">{{code}}</view>
+        </view>
+    </view>
+    <view class="weui-flex__item text_right">
+        <i class="icon iconfont icon-llhomesearch text_font_24"></i>
+    </view>
+</view>
+</view>
+
+<view class="weui-flex bgfff hq_zs_box">
+<view class="{{quotation.color}} text_center">
+    <view class="text_font_24">{{quotation.price}}</view>
+    <view class="weui-flex text_font_12 hq_zs_box_small">
+        <view class="weui-flex__item">{{quotation.change}}</view>
+        <view class="weui-flex__item">{{quotation.changePct}}</view>
+    </view>
+</view>
+<view class="weui-flex__item text_font_14 margin_left">
+    <view class="weui-flex flex_flow hq_zs_sub_top text_font_12">
+        <view class="hq_zs_sub_top_li">开：{{quotation.open}}</view>
+        <view class="hq_zs_sub_top_li">高：{{quotation.high}}</view>
+        <view class="hq_zs_sub_top_li">低：{{quotation.low}}</view>
+        <view class="hq_zs_sub_top_li">换：{{quotation.turnoverRate}}</view>
+        <view class="hq_zs_sub_top_li">量：{{quotation.volumn}}</view>
+        <view class="hq_zs_sub_top_li">额：{{quotation.volumnPrice}}</view>
+    </view>
+</view>
+</view>
+<view class="hq_zs_sub weui-flex flex_flow padding_10_15 border_t">
+<view class="hq_zs_sub_li">
+    <view class="colgray">跌停</view>
+    <b class="colred">{{quotation.limitUp}}</b>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">涨停</view>
+    <view class="colgreen">{{quotation.limitDown}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">开盘</view>
+    <view>{{quotation.open}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">昨收</view>
+    <view>{{quotation.closePrice}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">最高</view>
+    <view>{{quotation.high}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">最低</view>
+    <view>{{quotation.low}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">换手</view>
+    <view>{{quotation.turnoverRate}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">振幅</view>
+    <view>{{quotation.swing}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">成交额</view>
+    <view>{{quotation.volumnPrice}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">成交量</view>
+    <view>{{quotation.volumn}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">总股本</view>
+    <view>{{quotation.totalValue}}</view>
+</view>
+<view class="hq_zs_sub_li">
+    <view class="colgray">流通值</view>
+    <view>{{quotation.circulationValue}}</view>
+</view>
+
+</view>
+
+
+<view class="page">
+<view class="page__bd">
+    <view class="weui-tab hq_table_tab">
+        <view class="weui-navbar">
+            <block wx:for-items="{{klineTabs}}" wx:key="{{index}}">
+                <view id="{{index}}" class="weui-navbar__item {{currentTimeIndex == index ? 'weui-bar__item_on' : ''}}"
+                      bindtap="klineTabClick">
+                    <!--分时/日k/周k/年k/-->
+                    <view class="weui-navbar__title">{{item}}</view>
+                </view>
+            </block>
+            <view class="weui-navbar__slider"
+                  style=" transform: translateX({{klineOffset}}px); -webkit-transform: translateX({{klineOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel bgfff">
+            <view class="weui-tab__content">
+                <view class="weui-flex">
+                    <!-- 分时行情 -->
+                    <view style="{{quotePeriod == 1 ? 'height: 210px; width: 65%;' :'height: 100%; width: 100%;' }} ">
+                        <template is="kline" data="{{...quoteData}}"/>
+                        <!--<canvas style="width: 100%; background-color: #ff0; height: 210px;" canvas-id="firstCanvas2"></canvas>-->
+                    </view>
+                    <view class="buy_sale_zs weui-flex__item" hidden="{{currentTimeIndex != 0}}">
+
+                        <view class="weui-tab hq_table_buysale">
+                            <view class="weui-navbar">
+                                <view id="level1{{index}}" class="weui-navbar__item weui-bar__item_on"
+                                      bindtap="level1TabClick" wx:for="{{level1Tabs}}" wx:key="{{index}}">
+                                    <!--五档/明细-->
+                                    <view class="weui-navbar__title">{{item}}</view>
+                                </view>
+                                <view class="weui-navbar__slider"
+                                      style="transform: translateX({{level1Offset}}px); -webkit-transform: translateX({{level1Offset}}px);"></view>
+                            </view>
+                            <view class="weui-tab__panel">
+                                <!--五档-->
+                                <view class="weui-tab__content" hidden="{{level1Index != 0}}">
+                                    <view class="border_b">
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">卖5</span>
+                                                    {{fiveData.sell_5}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.sell_5_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">卖4</span>
+                                                    {{fiveData.sell_4}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.sell_4_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">卖3</span>
+                                                    {{fiveData.sell_3}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.sell_3_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">卖2</span>
+                                                    {{fiveData.sell_2}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.sell_2_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">卖1</span>
+                                                    {{fiveData.sell_1}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.sell_1_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="border_b">
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">买1</span>
+                                                    {{fiveData.buy_1}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.buy_1_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">买2</span>
+                                                    {{fiveData.buy_2}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.buy_2_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">买3</span>
+                                                    {{fiveData.buy_3}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.buy_3_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">买4</span>
+                                                    {{fiveData.buy_4}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.buy_4_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                        <view class="all_table_box">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">买5</span>
+                                                    {{fiveData.buy_5}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{fiveData.buy_5_s}}
+                                                </view>
+                                            </view>
+                                        </view>
+                                    </view>
+                                </view>
+
+                                <!--明细-->
+                                <view class="weui-tab__content" hidden="{{level1Index != 1}}">
+                                    <scroll-view scroll-y="true" style="height: 180px" lower-threshold="20px"
+                                                 bindscrolltolower="level1Scroll">
+                                        <view class="all_table_box" wx:for="{{levelDetailData}}" wx:key="{{index}}">
+                                            <view class="all_table">
+                                                <view class="all_table_li {{quotation.color}}">
+                                                    <span class="colgray">{{item[0]}}</span>
+                                                    {{item[1]}}
+                                                </view>
+                                                <view class="all_table_li text_right colgray">{{item[2]}}</view>
+                                            </view>
+                                        </view>
+                                    </scroll-view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+</view>
+        <!--弹窗-->
+<view class="page" class="hq_tan"hidden="{{indexShowOrHide}}">
+<view class="page__bd">
+    <view class="weui-tab hq_table_tab">
+        <view class="weui-navbar">
+            <block wx:for-items="{{indexTabs}}" wx:key="{{index}}">
+                <view id="index{{index}}"
+                      class="weui-navbar__item {{indexTabIndex == index ? 'weui-bar__item_on' : ''}}"
+                      bindtap="indexTabClick">
+                    <!--分时/日k/周k/年k/-->
+                    <view class="weui-navbar__title">{{item}}</view>
+                </view>
+            </block>
+            <view class="weui-navbar__slider"
+                  style="transform: translateX({{indexOffset}}px); -webkit-transform: translateX({{indexOffset}}px);"></view>
+        </view>
+        <view class="weui-tab__panel">
+            <view class="weui-tab__content">
+                <view class="weui-flex">
+                    <view style="width:65%;">
+                        <view id="canvas_container">
+                            <canvas canvas-id="indexMin0" style="background-color:#FFFFFF" hidden="{{indexTabIndex != 0}}"></canvas>
+                            <canvas canvas-id="indexMin1" style="background-color:#FFFFFF" hidden="{{indexTabIndex != 1}}"></canvas>
+                            <canvas canvas-id="indexMin2" style="background-color:#FFFFFF" hidden="{{indexTabIndex != 2}}"></canvas>
+                        </view>
+                    </view>
+                    <view class="text_font_12 weui-flex__item text_center">
+                        <view class="text_font_24 {{indexQuoteData.color}}">{{indexQuoteData.price}}</view>
+                        <view class="weui-flex colred">
+                            <view class="weui-flex__item {{indexQuoteData.color}}">{{indexQuoteData.change}}</view>
+                            <view class="weui-flex__item {{indexQuoteData.color}}">{{indexQuoteData.changePct}}</view>
+                        </view>
+                        <view class="hq_fdtab_sub">
+                            <view class="{{indexQuoteData.highPrice_color}}">最高 {{indexQuoteData.highPrice}}</view>
+                            <view class="{{indexQuoteData.lowPrice_color}}">最低 {{indexQuoteData.lowPrice}}</view>
+                            <view class="{{indexQuoteData.openPrice_color}}">开盘 {{indexQuoteData.openPrice}}</view>
+                            <view class="colgray">昨收 {{indexQuoteData.closePrice}}</view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+</view>
+
+
+        <!--行情底部浮动-->
+<view class="nav_height60"></view>
+<view class="weui-flex hq_b_fd text_font_14">
+<view class="weui-flex__item" bindtap="isShowStockIndex">
+    <view>
+        <i class="icon iconfont icon-xiasanjiao-copy text_font_12"></i>
+    </view>
+    <view class="{{indexQuoteData.color}}">{{indexQuoteData.price}}</view>
+    <view class="text_font_12">{{indexQuoteData.name}}
+        <span class="{{indexQuoteData.color}}">{{indexQuoteData.changePct}}</span>
+    </view>
+</view>
+<view class="hq_b_fd_l">
+    <view class="weui-flex">
+        <view class="weui-flex__item">
+            <view>
+                <i class="icon iconfont icon-jiaoyi text_font_18"></i>
+            </view>
+            <view>交易</view>
+        </view>
+        <navigator class="weui-flex__item" url="/modules/market/stockdiscuss/stockdiscuss?code={{code}}&name={{goodsName}}">
+            <view>
+                <i class="icon iconfont icon-taolun text_font_18"></i>
+            </view>
+            <view>论股</view>
+        </navigator>
+        <view class="weui-flex__item" bindtap="onShareAppMessage">
+            <view>
+                <i class="icon iconfont icon-fenxiang text_font_18"></i>
+            </view>
+            <view>分享</view>
+        </view>
+    </view>
+</view>
+<view class="weui-flex__item bgred zx_box" bindtap="{{isOptional ? 'removeOptional' : 'addOptional' }}">
+    <block wx:if="{{!isOptional}}">
+        <i class="icon iconfont icon-jia text_font_18"></i>
+        <view>添加自选</view>
+    </block>
+    <block wx:if="{{isOptional}}">
+        <i class="icon iconfont icon-jianhao1 text_font_18"></i>
+        <view>删除自选</view>
+    </block>
+</view>
+</view>
+
+

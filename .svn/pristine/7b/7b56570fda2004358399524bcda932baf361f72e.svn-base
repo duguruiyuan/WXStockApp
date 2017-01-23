@@ -1,0 +1,94 @@
+<!--个人中心-->
+<import src="../templates/title.wxml"/>
+<view class="container">
+
+    <view class="title">
+        <text>个人中心</text>
+    </view>
+
+    <!--用户信息区-->
+    <view class="user-info">
+        <view class="top">
+            <image  class="img60" src="http://img2.imgtn.bdimg.com/it/u=4283224762,2640682880&fm=23&gp=0.jpg"></image>
+            <view class="right">
+                <text>山大王</text>
+                <view class="op-btn">
+                    <button>修改个人信息</button>
+                    <button>申请大咖</button>
+                </view>
+                <text>向我提问需要支付100大咖币</text>
+            </view>
+        </view>
+        <view class="center">
+            <view class="user-profiles">
+                <text style="font-weight:bold">简介</text>:
+                好东西喜欢留到最后吃，重点都是留到最后讲。因此，上面的，大家都懂的，就是走过场的，只在特殊情况用用（单纯HTML处理），如果真要构造一个通用的appendHTML方法，innerHTML拼接显然是没有市场的。 
+            </view>
+        </view>
+        <view class="bottom">
+            <view class="my-item">
+                <view>
+                    <image class="img25" src="/resources/images/dk_money.png"></image>20
+                </view>
+                <text>大咖币</text>
+            </view>
+            <view class="my-item">
+                <view>
+                    <image class="img25" src="/resources/images/dk_money.png"></image>20
+                </view>
+                <view>
+                    <text>余额</text>
+                    <text style="color:red;margin-left:2px;">充值</text>
+                </view>
+            </view>
+            <view class="my-item">
+                <view>
+                    <image class="img25" src="/resources/images/mygz_ico.png"></image>20
+                </view>
+                <text>我的关注</text>
+            </view>
+        </view>
+    </view>
+
+    <view class="sep-field"></view>
+    
+    <view class="my-list">
+        <view>
+            <text>看过的</text>
+            <text class="fr">》</text>
+        </view>
+        <view>
+            <text>读过的</text>
+            <text class="fr">》</text>
+        </view>
+        <view>
+            <text>听过的</text>
+        </view>
+        <view>
+            <text>我写的</text>
+        </view>
+        <view>
+            <text>问我的</text>
+        </view>
+
+    </view>
+
+    <view class="sep-field"></view>
+
+    <view class="my-list">
+        <view>
+            <text>消费记录</text>
+            <text class="fr">》</text>
+        </view>
+         <view>
+            <text>帮助</text>
+            <text class="fr">》</text>
+        </view>
+         <view>
+            <text>关于</text>
+            <text class="fr">》</text>
+        </view>
+    </view>
+
+    
+</view>
